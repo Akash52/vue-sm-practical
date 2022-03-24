@@ -1,10 +1,12 @@
 <template>
+  //Our Header
   <h1
     class="sticky top-0 z-50 text-center xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl text-teal-900 font-bold border-b-2 shadow-xl border-slate-400 m-8 p-4 bg-blue-50 rounded-b-2xl whitespace-nowrap"
   >
     Top 10 fastest cars 🚗 in the World 🗺️
   </h1>
   <div class="flex flex-wrap">
+    //here we are going to loop through our cars array and display them
     <div
       v-for="car in cars"
       :key="car.id"
@@ -34,7 +36,8 @@ export default {
         top_speed: '350 kmh',
         description:
           'The first open-top hybrid Lamborghini super sports car to feature a supercapacitor, the Sián Roadster roars with electrified intensity,',
-        image_link: 'https://i.ibb.co/23ps4Fd/01.jpg'
+        image_link: 'https://i.ibb.co/23ps4Fd/01.jpg',
+        price: '₹27 Crores'
       },
       {
         id: 2,
@@ -42,7 +45,8 @@ export default {
         top_speed: '350 kmh',
         description:
           'Introduced in July 2019, the Huayra BC Roadster or the Huarya Roadster BC is an open top variant of the Huarya BC',
-        image_link: 'https://i.ibb.co/DMKBDMC/02.jpg'
+        image_link: 'https://i.ibb.co/DMKBDMC/02.jpg',
+        price: '₹30 Crores'
       },
       {
         id: 3,
@@ -50,7 +54,8 @@ export default {
         top_speed: '403 kmh',
         description:
           'The McLaren Speedtail is a sports car produced by McLaren Automotive. It was designed by the British automotive designer',
-        image_link: 'https://i.ibb.co/fYrC7Df/03.jpg'
+        image_link: 'https://i.ibb.co/fYrC7Df/03.jpg',
+        price: '₹30 Crores'
       },
       {
         id: 4,
@@ -58,7 +63,8 @@ export default {
         top_speed: '350 kmh',
         description:
           'The Valkyrie is a sports car produced by Aston Martin. It was designed by the British automotive designer',
-        image_link: 'https://i.ibb.co/YpRKsgx/04.jpg '
+        image_link: 'https://i.ibb.co/YpRKsgx/04.jpg ',
+        price: '₹40 Crores'
       },
       {
         id: 5,
@@ -66,7 +72,8 @@ export default {
         top_speed: '435.31 kmh',
         description:
           'The Venom GT is a sports car produced by Hennessey. It was designed by the British automotive designer',
-        image_link: ' https://i.ibb.co/bbrwTVY/05.jpg'
+        image_link: ' https://i.ibb.co/bbrwTVY/05.jpg',
+        price: '₹45 Crores'
       },
       {
         id: 6,
@@ -74,7 +81,8 @@ export default {
         top_speed: '483 kmh',
         description:
           'The Jesko is a sports car produced by Koenigsegg Automotive. It was designed by the Swedish automotive designer',
-        image_link: 'https://i.ibb.co/5TxZqJZ/06.jpg'
+        image_link: 'https://i.ibb.co/5TxZqJZ/06.jpg',
+        price: '₹50 Crores'
       },
       {
         id: 7,
@@ -82,7 +90,8 @@ export default {
         top_speed: '508 kmh',
         description:
           'The Tuatara is a sports car produced by SSC. It was designed by the German automotive designer',
-        image_link: 'https://i.ibb.co/jZ4WggD/07.jpg'
+        image_link: 'https://i.ibb.co/jZ4WggD/07.jpg',
+        price: '₹55 Crores'
       },
       {
         id: 8,
@@ -90,7 +99,8 @@ export default {
         top_speed: '482 kmh',
         description:
           'The Chiron Super Sport 300+ is a sports car produced by Bugatti Automotive. It was designed by the French automotive designer',
-        image_link: 'https://i.ibb.co/pnKZpCq/11.jpg'
+        image_link: 'https://i.ibb.co/pnKZpCq/11.jpg',
+        price: '₹60 Crores'
       },
       {
         id: 9,
@@ -98,7 +108,8 @@ export default {
         top_speed: '498 kmh',
         description:
           'The Bolide is a sports car produced by Bugatti Automotive. It was designed by the French automotive designer',
-        image_link: 'https://i.ibb.co/tYjY8sY/09.jpg'
+        image_link: 'https://i.ibb.co/tYjY8sY/09.jpg',
+        price: '₹65 Crores'
       },
       {
         id: 10,
@@ -106,7 +117,8 @@ export default {
         top_speed: '388 kmh',
         description:
           'The CCR is a sports car produced by Koenigsegg Automotive. It was designed by the Swedish automotive designer',
-        image_link: ' https://i.ibb.co/x8TJyCL/10.jpg '
+        image_link: ' https://i.ibb.co/x8TJyCL/10.jpg ',
+        price: '₹70 Crores'
       }
     ]
   },
