@@ -1,7 +1,7 @@
 [build]
-  command = "npm run build"
-  publish="Practical_1/dist/"
-  base = "Practical_1"
+base = "Practical_1/"
+publish = "Practical_1/dist/"
+command = "npm run build"
 
 [[redirects]]
   from = "/*"
