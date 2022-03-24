@@ -18,7 +18,8 @@
               name: car.name,
               top_speed: car.top_speed,
               image_link: car.image_link,
-              description: car.description
+              description: car.description,
+              price: car.price
             }
           }"
         >
