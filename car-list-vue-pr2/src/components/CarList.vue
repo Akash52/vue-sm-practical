@@ -11,23 +11,19 @@
       </h5>
       <div class="mt-6">
         <router-link
+          :class="{ disabled: !car.price }"
           :to="{
-            name: 'CarCard',
+            name: 'CarPage',
             params: {
-              id: car.id,
-              name: car.name,
-              top_speed: car.top_speed,
-              image_link: car.image_link,
-              description: car.description,
-              price: car.price
+              id: car.id
             }
           }"
         >
           <button
-            className="px-6 py-3 mb-1 mr-1 text-base font-bold text-gray-300 uppercase transition-all duration-150 ease-in bg-green-700 rounded-full shadow-md outline-none hover:shadow-lg focus:outline-none hover:bg-blue-600 "
+            class="px-6 py-3 mb-1 mr-1 text-base font-bold text-gray-300 uppercase transition-all duration-150 ease-in bg-green-700 rounded-full shadow-md outline-none hover:shadow-lg focus:outline-none hover:bg-blue-600"
             type="button"
           >
-            Info
+            {{ PriceShow(car) }}
           </button>
         </router-link>
       </div>
@@ -37,9 +33,19 @@
 
 <script>
 export default {
-  name: 'Task-List',
   props: {
     car: Object
+  },
+  // eslint-disable-next-line space-before-function-paren
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    PriceShow(car) {
+      if (car.price) {
+        return `${car.price}`
+      } else {
+        return 'Available soon'
+      }
+    }
   }
 }
 </script>
