@@ -1,21 +1,29 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import CarCardVue from './components/CarCard.vue'
-import HomeComp from './components/Home.vue'
+import CarPage from './pages/CarPage.vue'
+import HomePage from './pages/HomePage.vue'
+import NotFoundVue from './pages/NotFound.vue'
+
 const routes = [
   {
     path: '/car/:id',
-    name: 'CarCard',
-    component: CarCardVue
+    name: 'CarPage',
+    component: CarPage,
+    props: true
   },
   {
     path: '/',
-    name: 'Home',
-    component: HomeComp
+    name: 'HomePage',
+    component: HomePage
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFoundVue
   }
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes
 })
 
