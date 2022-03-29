@@ -1,12 +1,12 @@
 <template>
-  <div class="containerClass"></div>
-  <router-view />
+  <div class="containerClass">
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
   name: 'App'
-  // eslint-disable-next-line space-before-function-paren
 }
 </script>
 
