@@ -1,24 +1,11 @@
-# vue-todo
+# vue-sm-practical (PR-2)
 
-## Project setup
-```
-npm install
-```
+[Live Demo](https://vue-sm-pr2.netlify.app/)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### Car List Application With Coditional Logic
 
-### Compiles and minifies for production
-```
-npm run build
-```
+![alt](https://i.ibb.co/VSrMTkC/vue-Pr-2.png)
 
-### Lints and fixes files
-```
-npm run lint
-```
+### Card Card
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![alt](https://i.ibb.co/Xb44CC9/vue-todo.png)
