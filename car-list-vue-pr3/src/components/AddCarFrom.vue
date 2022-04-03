@@ -1,20 +1,20 @@
 <template>
   <button
     @click="isOpen = true"
-    class="px-6 py-2 mt-4 ml-8 mb-4 text-white bg-blue-600 rounded shadow text-right"
+    class="px-6 py-2 mt-4 mb-4 ml-8 text-right text-white bg-blue-600 rounded shadow"
     type="button"
   >
     Add New Car
   </button>
   <form v-show="isOpen" @submit.prevent="handleSubmit">
     <div
-      class="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+      class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
     >
-      <div class="relative my-6 mx-auto w-full max-w-md">
+      <div class="relative w-full max-w-md mx-auto my-6">
         <div
-          class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none"
+          class="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg outline-none focus:outline-none"
         >
-          <div class="relative p-6 flex-auto">
+          <div class="relative flex-auto p-6">
             <div>
               <label
                 htmlFor="todo"
@@ -54,17 +54,17 @@
             </div>
           </div>
           <div
-            class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b"
+            class="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200"
           >
             <button
-              class="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
               type="button"
               @click="isOpen = false"
             >
               Close
             </button>
             <button
-              class="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+              class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
               type="submit"
               @click="isOpen = false"
             >
@@ -74,7 +74,7 @@
         </div>
       </div>
     </div>
-    <div class="opacity-25 fixed inset-0 z-40 bg-black"></div>
+    <div class="fixed inset-0 z-40 bg-black opacity-25"></div>
   </form>
 </template>
 
@@ -101,7 +101,13 @@ export default {
         image_link: this.image_link,
         price: this.price
       }
-      console.log(newCar)
+      fetch('http://localhost:5000/cardata', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          body: JSON.stringify(newCar)
+        }
+      })
     }
   },
   // eslint-disable-next-line space-before-function-paren

@@ -1,12 +1,14 @@
 <template>
-  <!-- Our Header -->
+  <!-- Header -->
   <HeaderComp />
+  <!-- Modal Form -->
+  <add-car-form />
   <div class="flex flex-wrap">
     <!-- here we are going to loop through our cars array and display them -->
     <div
       v-for="car in cars"
       :key="car.id"
-      class="w-full max-w-sm py-6 px-4 mb-4 mx-auto transition duration-500 transform md:w-6/12 xl:4/12 lg:w-4/12 lg:mb-0 hover:scale-110"
+      class="w-full max-w-sm px-4 py-6 mx-auto mb-4 transition duration-500 transform md:w-6/12 xl:4/12 lg:w-4/12 lg:mb-0 hover:scale-110"
     >
       <CarList :car="car" />
     </div>
@@ -17,6 +19,7 @@
 import CarList from '@/components/CarList.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
 import data from '@/data.json'
+import AddCarForm from '@/components/AddCarFrom.vue'
 
 export default {
   name: 'HomePage',
@@ -27,6 +30,6 @@ export default {
       cars: data
     }
   },
-  components: { CarList, HeaderComp }
+  components: { CarList, HeaderComp, AddCarForm }
 }
 </script>
