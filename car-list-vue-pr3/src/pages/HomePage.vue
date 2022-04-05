@@ -1,7 +1,7 @@
 <template>
   <!-- Header -->
   <HeaderComp />
-  <div class="flex flex-wrap">
+  <div v-if="!loading" class="flex flex-wrap">
     <!-- here we are going to loop through our cars array and display them -->
     <div
       v-for="car in cars"
@@ -10,6 +10,9 @@
     >
       <CarList :car="car" @deleteCar="handleDelete" />
     </div>
+  </div>
+  <div v-else>
+    <div class="loader mt-2"></div>
   </div>
 </template>
 
@@ -28,15 +31,14 @@ export default {
     }
   },
   // eslint-disable-next-line space-before-function-paren
-  async created() {
+  async mounted() {
     this.loading = true
     fetch('https://mock-json-data-ak.herokuapp.com/cardata')
       .then((res) => res.json())
       .then((data) => {
         this.cars = data
+        this.loading = false
       })
-      .catch((err) => console.log(err))
-      .finally(() => (this.loading = false))
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -48,7 +50,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .loader {
   border: 16px solid #f3f3f3;
   border-top: 16px solid #3498db;
