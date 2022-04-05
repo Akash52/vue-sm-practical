@@ -94,7 +94,7 @@ export default {
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
-      fetch(`https://mock-json-data-ak.herokuapp.com/cardata/${this.id}`, {
+      fetch(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
