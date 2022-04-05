@@ -10,7 +10,7 @@
       :key="car.id"
       class="w-full max-w-sm px-4 py-6 mx-auto mb-4 transition duration-500 transform md:w-6/12 xl:4/12 lg:w-4/12 lg:mb-0 hover:scale-110"
     >
-      <CarList :car="car" />
+      <CarList :car="car" @deleteCar="handleDelete" />
     </div>
   </div>
 </template>
@@ -18,7 +18,6 @@
 <script>
 import CarList from '@/components/CarList.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
-import data from '@/data.json'
 import AddCarForm from '@/components/AddCarFrom.vue'
 
 export default {
@@ -27,7 +26,22 @@ export default {
   data() {
     return {
       // here we are going to define our cars array
-      cars: data
+      cars: []
+    }
+  },
+  // eslint-disable-next-line space-before-function-paren
+  mounted() {
+    fetch('http://localhost:5000/cardata')
+      .then((res) => res.json())
+      .then((data) => {
+        this.cars = data
+      })
+      .catch((err) => console.log(err))
+  },
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    handleDelete(id) {
+      return (this.cars = this.cars.filter((car) => car.id !== id))
     }
   },
   components: { CarList, HeaderComp, AddCarForm }
