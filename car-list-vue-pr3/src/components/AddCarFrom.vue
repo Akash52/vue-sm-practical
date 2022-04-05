@@ -81,6 +81,7 @@
 <script>
 import { ref } from 'vue'
 export default {
+  name: 'AddCarFrom',
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -104,12 +105,20 @@ export default {
       fetch('http://localhost:5000/cardata', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          body: JSON.stringify(newCar)
-        }
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newCar)
+      }).then(() => {
+        this.name = ''
+        this.top_speed = ''
+        this.description = ''
+        this.image_link = ''
+        this.price = ''
       })
     }
+    // eslint-disable-next-line space-before-function-paren
   },
+
   // eslint-disable-next-line space-before-function-paren
   setup() {
     const isOpen = ref(false)
