@@ -1,20 +1,21 @@
 <template>
   <div class="sticky top-0 z-50 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
     <nav
-      class="z-50 max-w-4xl p-2 mx-auto font-medium text-center text-gray-800 border-b-2 rounded-lg shadow-md shadow-pink-500 bg-pink-50 whitespace-nowrap"
+      class="z-50 max-w-4xl p-2 mx-auto font-medium text-center text-gray-800 rounded-lg shadow-md shadow-green-500 bg-gray-800 whitespace-nowrap"
     >
       <div class="flex justify-between">
-        <ul class="flex items-center justify-center">
+        <ul
+          class="flex items-center justify-center p-4 text-center shadow-sm bg-slate-200 hover:bg-slate-50 rounded-xl"
+        >
           <li>
             <router-link to="/" title="Home">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="w-6 h-6 ml-2 transition duration-300 rounded-lg hover:text-slate-900 hover:scale-125"
+                class="w-6 h-6 transition duration-300 rounded-lg hover:text-slate-900 hover:scale-125"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
                 stroke-width="2"
-                title="Home"
               >
                 <path
                   stroke-linecap="round"
@@ -26,9 +27,9 @@
           </li>
         </ul>
         <ul
-          class="flex items-center justify-center p-4 text-center shadow-md bg-slate-200 shadow-pink-200 hover:bg-slate-50 rounded-xl"
+          class="flex items-center justify-center p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
         >
-          <li>
+          <li title="Add new car">
             <router-link :to="{ name: 'AddCar' }">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
