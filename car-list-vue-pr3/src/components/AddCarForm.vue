@@ -94,7 +94,7 @@ export default {
         image_link: this.image_link,
         price: this.price + '$'
       }
-      fetch('https://mock-json-data-ak.herokuapp.com/cardata', {
+      fetch('https://vue-fake-server.herokuapp.com/cardata', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

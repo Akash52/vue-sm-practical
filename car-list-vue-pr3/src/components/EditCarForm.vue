@@ -80,7 +80,7 @@ export default {
 
   // eslint-disable-next-line space-before-function-paren
   mounted() {
-    fetch(`https://mock-json-data-ak.herokuapp.com/cardata/${this.id}`)
+    fetch(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`)
       .then((res) => res.json())
       .then((data) => {
         this.name = data.name

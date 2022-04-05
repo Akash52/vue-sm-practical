@@ -74,7 +74,7 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      uri: 'https://mock-json-data-ak.herokuapp.com/cardata/' + this.car.id
+      uri: 'https://vue-fake-server.herokuapp.com/cardata/' + this.car.id
     }
   },
   methods: {
