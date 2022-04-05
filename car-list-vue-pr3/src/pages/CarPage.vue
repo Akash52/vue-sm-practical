@@ -1,7 +1,7 @@
 /* eslint-disable */
 <template>
   <div class="flex items-center justify-center align-middle">
-    <div class="px-4 mx-auto">
+    <div v-if="!loading" class="px-4 mx-auto">
       <h1
         class="relative p-2 mt-5 -mb-3 font-bold text-center text-gray-100 border-2 border-pink-300 shadow-xl xs:text-xl sm:text-xl md:text-2xl lg:text-3xl bg-cyan-800 rounded-t-2xl"
       >
@@ -65,12 +65,13 @@
         </div>
       </div>
     </div>
+    <div v-else>
+      <div class="loader mt-2"></div>
+    </div>
   </div>
 </template>
 
 <script>
-import data from '@/data.json'
-
 export default {
   props: {
     id: {
@@ -79,10 +80,29 @@ export default {
     }
   },
 
+  // eslint-disable-next-line space-before-function-paren
+  data() {
+    return {
+      // here we are going to define our cars array
+      loading: false,
+      cars: []
+    }
+  },
+
+  // eslint-disable-next-line space-before-function-paren
+  async mounted() {
+    this.loading = true
+    fetch('https://mock-json-data-ak.herokuapp.com/cardata')
+      .then((res) => res.json())
+      .then((data) => {
+        this.cars = data
+        this.loading = false
+      })
+  },
   computed: {
     // eslint-disable-next-line space-before-function-paren
     car() {
-      return data.find((car) => car.id === Number(this.id)) || {}
+      return this.cars.find((car) => car.id === Number(this.id)) || {}
     }
   },
 
