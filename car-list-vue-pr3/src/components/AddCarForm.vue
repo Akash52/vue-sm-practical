@@ -20,26 +20,34 @@
                 placeholder="CAR NAME"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="name"
+                required
               />
               <input
-                type="text"
+                type="number"
                 placeholder="TOP SPEED"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="top_speed"
+                required
               />
               <textarea
                 placeholder="DESCRIPTION"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="description"
+                minlength="20"
+                maxlength="120"
+                type="text"
+                required
               ></textarea>
               <input
-                type="text"
+                type="url"
                 placeholder="IMAGE URL"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
+                pattern="/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i"
                 v-model="image_link"
+                required
               />
               <input
-                type="text"
+                type="number"
                 placeholder="PRICE"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="price"
@@ -81,10 +89,10 @@ export default {
     handleSubmit() {
       const newCar = {
         name: this.name,
-        top_speed: this.top_speed,
+        top_speed: this.top_speed + 'km/h',
         description: this.description,
         image_link: this.image_link,
-        price: this.price
+        price: this.price + '$'
       }
       fetch('https://mock-json-data-ak.herokuapp.com/cardata', {
         method: 'POST',
