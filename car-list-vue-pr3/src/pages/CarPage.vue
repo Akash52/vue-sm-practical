@@ -1,20 +1,20 @@
 /* eslint-disable */
 <template>
-  <div class="flex justify-center align-middle items-center">
-    <div class="mx-auto px-4">
+  <div class="flex items-center justify-center align-middle">
+    <div class="px-4 mx-auto">
       <h1
-        class="xs:text-xl relative sm:text-xl md:text-2xl text-center lg:text-3xl text-gray-100 font-bold border-2 shadow-xl border-pink-300 p-2 -mb-3 bg-cyan-800 mt-5 rounded-t-2xl"
+        class="relative p-2 mt-5 -mb-3 font-bold text-center text-gray-100 border-2 border-pink-300 shadow-xl xs:text-xl sm:text-xl md:text-2xl lg:text-3xl bg-cyan-800 rounded-t-2xl"
       >
         {{ car.name }}
       </h1>
 
       <span
-        class="absolute cursor-pointer font-extrabold text-neutral-100 z-50 p-2 m-2 rounded-full bg-gray-800 top-0 -mt-1 translate-y-3 -translate-x-7 shadow-2xl transition duration-600 shadow-orange-500 hover:ring-4 ring-pink-300"
+        class="absolute top-0 z-50 p-2 m-2 -mt-1 font-extrabold transition translate-y-3 bg-gray-800 rounded-full shadow-2xl cursor-pointer text-neutral-100 -translate-x-7 duration-600 shadow-orange-500 hover:ring-4 ring-pink-300"
         @click="goToHome()"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
+          class="w-6 h-6"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -29,37 +29,37 @@
       </span>
 
       <div
-        class="max-w-md py-2 my-2 bg-gradient-to-r from-cyan-700 border-x-2 border-b-2 border-pink-200 to-cyan-900 rounded-b-xl shadow-lg"
+        class="max-w-md py-2 my-2 border-b-2 border-pink-200 shadow-lg bg-gradient-to-r from-cyan-700 border-x-2 to-cyan-900 rounded-b-xl"
       >
         <img
           alt="..."
           :src="car.image_link"
-          class="shadow-xl border-b-2 hover:opacity-80 transition duration-600 border-2 border-emerald-400 cursor-pointer -mt-2"
+          class="-mt-2 transition border-2 border-b-2 shadow-xl cursor-pointer hover:opacity-80 duration-600 border-emerald-400"
         />
         <div class="pt-2">
           <h5
-            class="text-lg text-left font-bold text-gray-200 whitespace-nowrap border-b border-slate-700 py-4 px-2"
+            class="px-2 py-4 text-lg font-bold text-left text-gray-200 border-b whitespace-nowrap border-slate-700"
           >
             <span class="text-slate-800">Car Name 🏁 </span>
             {{ car.name }}
           </h5>
           <h5
-            class="text-lg text-left font-bold text-gray-200 whitespace-nowrap border-b border-slate-700 py-2 px-2"
+            class="px-2 py-2 text-lg font-bold text-left text-gray-200 border-b whitespace-nowrap border-slate-700"
           >
             <span class="text-slate-800">Top Speed 🔥 </span>
             {{ car.top_speed }}
           </h5>
           <h5
-            class="text-lg text-left font-bold text-gray-200 whitespace-nowrap border-b border-slate-700 py-2 px-2"
+            class="px-2 py-2 text-lg font-bold text-left text-gray-200 border-b whitespace-nowrap border-slate-700"
           >
             <span class="text-slate-800">Price 🤑 </span>
             {{ car.price }}
           </h5>
-          <h5 class="text-lg text-center font-bold text-gray-200 py-2 px-2">
+          <h5 class="px-2 py-2 text-lg font-bold text-center text-gray-200">
             <span class="text-slate-800">Info 📔 </span>
           </h5>
 
-          <h5 class="text-sm text-center font-bold text-gray-200 py-2 px-2">
+          <h5 class="px-2 py-2 text-sm font-bold text-center text-gray-200">
             {{ car.description }}
           </h5>
         </div>

@@ -1,12 +1,5 @@
 <template>
-  <button
-    @click="isOpen = true"
-    class="px-6 py-2 mt-4 mb-4 ml-8 text-right text-white bg-blue-600 rounded shadow"
-    type="button"
-  >
-    Update Car
-  </button>
-  <form v-show="isOpen" @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit">
     <div
       class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
     >
@@ -54,21 +47,13 @@
             </div>
           </div>
           <div
-            class="flex items-center justify-end p-6 border-t border-solid rounded-b border-blueGray-200"
+            class="flex items-center justify-center p-2 border-t border-solid rounded-b border-blueGray-200"
           >
             <button
-              class="px-6 py-2 mb-1 mr-1 text-sm font-bold text-red-500 uppercase transition-all duration-150 ease-linear outline-none background-transparent focus:outline-none"
-              type="button"
-              @click="isOpen = false"
-            >
-              Close
-            </button>
-            <button
-              class="px-6 py-3 mb-1 mr-1 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+              class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
               type="submit"
-              @click="isOpen = false"
             >
-              Add
+              Update
             </button>
           </div>
         </div>
@@ -79,7 +64,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 export default {
   name: 'EditCarForm',
   props: ['id'],
@@ -96,7 +80,7 @@ export default {
 
   // eslint-disable-next-line space-before-function-paren
   mounted() {
-    fetch(`http://localhost:5000/cardata/${this.id}`)
+    fetch(`https://mock-json-data-ak.herokuapp.com/cardata/${this.id}`)
       .then((res) => res.json())
       .then((data) => {
         this.name = data.name
@@ -128,22 +112,6 @@ export default {
         })
         .catch((err) => console.log(err))
     }
-  },
-
-  // eslint-disable-next-line space-before-function-paren
-  setup() {
-    const isOpen = ref(false)
-    document.addEventListener('keydown', (e) => {
-      if (e.keyCode === 27) {
-        isOpen.value = false
-      }
-    })
-    document.addEventListener('keydown', (e) => {
-      if (e.keyCode === 13) {
-        isOpen.value = true
-      }
-    })
-    return { isOpen }
   }
 }
 </script>

@@ -1,15 +1,15 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sticky top-0 z-50">
+  <div class="sticky top-0 z-50 px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
     <nav
-      class="z-50 text-center mx-auto max-w-4xl font-medium text-gray-800 p-2 shadow-md shadow-pink-500 border-b-2 rounded-lg bg-pink-50 whitespace-nowrap"
+      class="z-50 max-w-4xl p-2 mx-auto font-medium text-center text-gray-800 border-b-2 rounded-lg shadow-md shadow-pink-500 bg-pink-50 whitespace-nowrap"
     >
       <div class="flex justify-between">
-        <ul class="flex justify-center items-center">
+        <ul class="flex items-center justify-center">
           <li>
             <router-link to="/" title="Home">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6 ml-2 hover:text-slate-900 rounded-lg transition duration-300 hover:scale-125"
+                class="w-6 h-6 ml-2 transition duration-300 rounded-lg hover:text-slate-900 hover:scale-125"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -26,13 +26,13 @@
           </li>
         </ul>
         <ul
-          class="flex justify-center items-center text-center bg-slate-200 shadow-md shadow-pink-200 hover:bg-slate-50 rounded-xl p-4"
+          class="flex items-center justify-center p-4 text-center shadow-md bg-slate-200 shadow-pink-200 hover:bg-slate-50 rounded-xl"
         >
           <li>
-            <router-link to="/" title="Add New Car">
+            <router-link :to="{ name: 'AddCar' }">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
+                class="w-6 h-6"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -51,7 +51,6 @@
     </nav>
   </div>
 </template>
-
 <script>
 export default {}
 </script>

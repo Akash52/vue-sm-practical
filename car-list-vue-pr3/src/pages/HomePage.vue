@@ -1,8 +1,6 @@
 <template>
   <!-- Header -->
   <HeaderComp />
-  <!-- Modal Form -->
-  <add-car-form />
   <div class="flex flex-wrap">
     <!-- here we are going to loop through our cars array and display them -->
     <div
@@ -18,7 +16,6 @@
 <script>
 import CarList from '@/components/CarList.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
-import AddCarForm from '@/components/AddCarFrom.vue'
 
 export default {
   name: 'HomePage',
@@ -26,17 +23,20 @@ export default {
   data() {
     return {
       // here we are going to define our cars array
+      loading: false,
       cars: []
     }
   },
   // eslint-disable-next-line space-before-function-paren
-  mounted() {
-    fetch('http://localhost:5000/cardata')
+  async created() {
+    this.loading = true
+    fetch('https://mock-json-data-ak.herokuapp.com/cardata')
       .then((res) => res.json())
       .then((data) => {
         this.cars = data
       })
       .catch((err) => console.log(err))
+      .finally(() => (this.loading = false))
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -44,6 +44,26 @@ export default {
       return (this.cars = this.cars.filter((car) => car.id !== id))
     }
   },
-  components: { CarList, HeaderComp, AddCarForm }
+  components: { CarList, HeaderComp }
 }
 </script>
+
+<style scoped>
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
