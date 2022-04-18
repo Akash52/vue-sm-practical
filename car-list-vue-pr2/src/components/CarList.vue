@@ -23,7 +23,7 @@
             class="px-6 py-3 mb-1 mr-1 text-base font-bold text-gray-300 uppercase transition-all duration-150 ease-in bg-green-700 rounded-full shadow-md outline-none hover:shadow-lg focus:outline-none hover:bg-blue-600"
             type="button"
           >
-            {{ PriceShow(car) }}
+            {{ priceshow(car) }}
           </button>
         </router-link>
       </div>
@@ -39,7 +39,7 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   methods: {
     // eslint-disable-next-line space-before-function-paren
-    PriceShow(car) {
+    priceshow(car) {
       if (car.price) {
         return `${car.price}`
       } else {

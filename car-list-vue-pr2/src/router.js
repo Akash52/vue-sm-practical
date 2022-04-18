@@ -1,5 +1,5 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import CarPage from './pages/CarPage.vue'
+import CarPage from './components/CarPage.vue'
 import HomePage from './pages/HomePage.vue'
 import NotFoundVue from './pages/NotFound.vue'
 
