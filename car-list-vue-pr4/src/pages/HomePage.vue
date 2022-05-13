@@ -43,7 +43,9 @@ export default {
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleDelete(id) {
-      return (this.cars = this.cars.filter((car) => car.id !== id))
+      if (confirm('Are you sure you want to delete this car?')) {
+        return (this.cars = this.cars.filter((car) => car.id !== id))
+      }
     }
   },
   components: { CarList, HeaderComp }
