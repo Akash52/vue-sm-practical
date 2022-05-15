@@ -52,8 +52,9 @@
           </ul>
           <ul
             class="flex items-center justify-center ml-2 p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
+            title="Login"
           >
-            <li title="Login">
+            <li>
               <router-link :to="{ name: 'UserLogin' }">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -74,9 +75,10 @@
           </ul>
           <ul
             class="flex items-center justify-center ml-2 p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
+            title="Register"
           >
-            <li title="Register">
-              <router-link :to="{ name: 'AddCar' }">
+            <li>
+              <router-link :to="{ name: 'UserRegister' }">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"
