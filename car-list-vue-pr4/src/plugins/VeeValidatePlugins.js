@@ -1,10 +1,8 @@
 import { defineRule, Form, Field, ErrorMessage } from 'vee-validate'
+import { required } from '@vee-validate/rules'
 
 export default (app) => {
-  defineRule('required', (value) => {
-    if (value && value.trim()) return true
-    return 'This field is required'
-  })
+  defineRule('required', required)
 
   app.component('VeeForm', Form)
   app.component('VeeField', Field)
@@ -21,11 +19,11 @@ export default (app) => {
   //           value
   //         )
   //     }),
-  //     defineRule('url', {
-  //       getMessage: (field) => `${field} is not a valid url`,
-  //       validate: (value) =>
-  //         /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
-  //           value
-  //         )
-  //     })
+  //   defineRule('url', {
+  //     getMessage: (field) => `${field} is not a valid url`,
+  //     validate: (value) =>
+  //       /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
+  //         value
+  //       )
+  //   })
 }

@@ -60,9 +60,7 @@
                 name="image_link"
                 placeholder="IMAGE URL"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-                pattern="/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i"
                 v-model="image_link"
-                accept="image/*"
                 rules="required"
               />
               <VeeErrorMessage
