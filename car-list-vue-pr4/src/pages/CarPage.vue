@@ -66,12 +66,13 @@
       </div>
     </div>
     <div v-else>
-      <div class="loader mt-2"></div>
+      <div class="loader mt-2 mx-auto"></div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: {
     id: {
@@ -90,15 +91,15 @@ export default {
   },
 
   // eslint-disable-next-line space-before-function-paren
-  async mounted() {
+  async created() {
     this.loading = true
-    fetch('https://vue-fake-server.herokuapp.com/cardata')
-      .then((res) => res.json())
-      .then((data) => {
-        this.cars = data
-        this.loading = false
-      })
+    const { data } = await axios.get(
+      'https://vue-fake-server.herokuapp.com/cardata'
+    )
+    this.cars = data
+    this.loading = false
   },
+
   computed: {
     // eslint-disable-next-line space-before-function-paren
     car() {
@@ -111,7 +112,6 @@ export default {
     goToHome() {
       this.$router.push('/')
     }
-    // eslint-disable-next-line space-before-function-paren
   }
 }
 </script>

@@ -98,6 +98,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'EditCarForm',
   props: ['id'],
@@ -128,20 +129,16 @@ export default {
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
-      fetch(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: this.name,
-          top_speed: this.top_speed,
-          description: this.description,
-          image_link: this.image_link,
-          price: this.price
-        })
-      })
-        .then(() => {
+      const data = {
+        name: this.name,
+        top_speed: this.top_speed,
+        description: this.description,
+        image_link: this.image_link,
+        price: this.price
+      }
+      axios
+        .put(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`, data)
+        .then((res) => {
           this.$router.push('/')
         })
         .catch((err) => console.log(err))

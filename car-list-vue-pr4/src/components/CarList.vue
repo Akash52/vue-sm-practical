@@ -67,6 +67,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   props: {
     car: Object
@@ -80,16 +81,15 @@ export default {
   methods: {
     // eslint-disable-next-line space-before-function-paren
     deleteCar() {
-      fetch(this.uri, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(() => {
-          this.$emit('deleteCar', this.car.id)
-        })
-        .catch((err) => console.log(err))
+      confirm('Are you sure you want to delete this car?') &&
+        axios
+          .delete(this.uri)
+          .then(() => {
+            this.$emit('deleteCar', this.car.id)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
     }
   }
 }

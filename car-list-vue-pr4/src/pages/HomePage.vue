@@ -12,13 +12,14 @@
     </div>
   </div>
   <div v-else>
-    <div class="loader mt-2"></div>
+    <div class="loader mt-2 mx-auto"></div>
   </div>
 </template>
 
 <script>
 import CarList from '@/components/CarList.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
+import axios from 'axios'
 
 export default {
   name: 'HomePage',
@@ -31,21 +32,23 @@ export default {
     }
   },
   // eslint-disable-next-line space-before-function-paren
-  async mounted() {
+  mounted() {
     this.loading = true
-    fetch('https://vue-fake-server.herokuapp.com/cardata')
-      .then((res) => res.json())
-      .then((data) => {
-        this.cars = data
+    axios
+      .get('https://vue-fake-server.herokuapp.com/cardata')
+      .then((res) => {
+        this.cars = res.data
         this.loading = false
       })
+      .catch((err) => {
+        alert(err)
+      })
   },
+
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleDelete(id) {
-      if (confirm('Are you sure you want to delete this car?')) {
-        return (this.cars = this.cars.filter((car) => car.id !== id))
-      }
+      return (this.cars = this.cars.filter((car) => car.id !== id))
     }
   },
   components: { CarList, HeaderComp }

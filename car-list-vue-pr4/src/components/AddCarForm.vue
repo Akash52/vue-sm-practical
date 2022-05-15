@@ -98,9 +98,9 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'AddCarForm',
-
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -113,36 +113,23 @@ export default {
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
-    // required(value) {
-    //   if (value && value.trim()) return true
-    //   return 'This field is required'
-    // },
-
-    // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
-      const newCar = {
+      const data = {
         name: this.name,
-        top_speed: this.top_speed + 'km/h',
+        top_speed: this.top_speed,
         description: this.description,
         image_link: this.image_link,
-        price: this.price + '$'
+        price: this.price
       }
-      fetch('https://vue-fake-server.herokuapp.com/cardata', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newCar)
-      }).then(() => {
-        this.name = ''
-        this.top_speed = ''
-        this.description = ''
-        this.image_link = ''
-        this.price = ''
-        this.$router.push('/')
-      })
+      axios
+        .post('https://vue-fake-server.herokuapp.com/cardata', data)
+        .then((response) => {
+          this.$router.push('/')
+        })
+        .catch((error) => {
+          console.log(error)
+        })
     }
-    // eslint-disable-next-line space-before-function-paren
   }
 }
 </script>
