@@ -16,14 +16,14 @@
         class="px-4 relative py-8 transition duration-500 bg-gray-800 hover:opacity-95 sm:rounded-lg sm:px-10"
       >
         <VeeForm @submit="handleSubmit">
-          <VeeErrorMessage name="name" class="text-red-500 text-xs italic" />
+          <VeeErrorMessage name="email" class="text-red-500 text-xs italic" />
           <VeeField
-            type="text"
-            name="name"
-            placeholder="Username"
+            type="email"
+            name="email"
+            placeholder="Email"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="name"
-            :rules="{ required: true, min: 3, max: 20 }"
+            v-model="email"
+            :rules="{ required: true, email: true }"
           />
           <VeeErrorMessage
             name="password"
@@ -43,12 +43,13 @@
           >
             Login
           </button>
-          <router-link :to="{ name: 'HomePage' }">
-            <p class="mt-4 text-base text-gray-300 italic">
-              <span class="text-orange-300 underline">Click here </span>
-              for Register
-            </p>
-          </router-link>
+
+          <p class="mt-4 text-base text-gray-300 italic">
+            <router-link :to="{ name: 'UserRegister' }"
+              ><span class="text-orange-300 underline">Click here </span>
+            </router-link>
+            for Register
+          </p>
         </VeeForm>
         <span
           class="absolute top-0 left-0 z-50 ml-8 p-2 m-2 -mt-1 font-extrabold transition -translate-y-3 bg-pink-400 rounded-full shadow-2xl cursor-pointer text-neutral-100 -translate-x-7 duration-600 shadow-orange-500 hover:ring-4 ring-gray-100"
