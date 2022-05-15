@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.vue'
 import NotFoundVue from './pages/NotFound.vue'
 import EditCarForm from '@/components/EditCarForm.vue'
 import AddCarForm from '@/components/AddCarForm.vue'
+import UserLoginForm from './components/UserLoginForm '
 
 const routes = [
   {
@@ -27,6 +28,11 @@ const routes = [
     path: '/addCar',
     name: 'AddCar',
     component: AddCarForm
+  },
+  {
+    path: '/login',
+    name: 'UserLogin',
+    component: UserLoginForm
   },
   {
     path: '/:pathMatch(.*)*',

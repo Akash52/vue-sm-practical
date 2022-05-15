@@ -1,6 +1,7 @@
 <template>
   <!-- Header -->
   <HeaderComp />
+
   <div v-if="!loading" class="flex flex-wrap">
     <!-- here we are going to loop through our cars array and display them -->
     <div
@@ -19,6 +20,7 @@
 <script>
 import CarList from '@/components/CarList.vue'
 import HeaderComp from '@/components/HeaderComp.vue'
+
 import axios from 'axios'
 
 export default {

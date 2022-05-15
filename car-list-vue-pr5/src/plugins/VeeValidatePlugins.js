@@ -9,6 +9,11 @@ export default (app) => {
   defineRule('max', max)
   defineRule('url', url)
   defineRule('numeric', numeric)
+  defineRule('password', (value) => {
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+|~`\-={}[\]:";'<>?,./])(?=.{8,})/
+    return regex.test(value)
+  })
 
   configure({
     generateMessage: localize('en', {
@@ -18,7 +23,9 @@ export default (app) => {
         min: '{field} must be at least 0:{min} characters',
         max: '{field} must be at most 0:{max} characters',
         url: '{field} is not a valid url',
-        numeric: '{field} is not a valid number'
+        numeric: '{field} is not a valid number',
+        password:
+          '{field} must contain at least 8 characters, one uppercase, one lowercase, one number and one special character'
       }
     })
   })
