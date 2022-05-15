@@ -33,7 +33,7 @@
                 placeholder="TOP SPEED"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="top_speed"
-                :rules="{ required: true, numeric: true, min: 3, max: 20 }"
+                :rules="{ required: true, numeric: true, min: 3, max: 40 }"
               />
               <VeeErrorMessage
                 name="top_speed"
