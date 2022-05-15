@@ -1,26 +1,26 @@
 <template>
   <div
-    className="flex flex-col justify-center items-center  xs:mx-5 sm:m-3 sm:mx-4 sm:px-6 lg:px-8"
+    class="flex flex-col justify-center items-center sm:mx-4 sm:px-6 lg:px-8"
   >
-    <div className="w-full max-w-md mx-auto">
+    <div class="w-full max-w-md mx-auto">
       <h2
-        className="text-2xl font-extrabold text-center text-white lg:text-3xl md:text-xl"
+        class="text-2xl font-extrabold text-center text-white lg:text-3xl md:text-xl"
       >
         Login to your account
       </h2>
     </div>
     <div
-      className="mt-4 shadow-md sm:mx-auto sm:w-full hover:shadow-sm sm:max-w-md"
+      class="mt-4 shadow-md sm:mx-auto sm:w-full hover:shadow-sm sm:max-w-md"
     >
       <div
-        className="px-4 relative py-8 transition duration-500 bg-gray-800 hover:opacity-95 sm:rounded-lg sm:px-10"
+        class="px-4 relative py-8 transition duration-500 bg-gray-800 hover:opacity-95 sm:rounded-lg sm:px-10"
       >
         <VeeForm @submit="handleSubmit">
           <VeeErrorMessage name="name" class="text-red-500 text-xs italic" />
           <VeeField
             type="text"
             name="name"
-            placeholder="user name"
+            placeholder="Username"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
             v-model="name"
             :rules="{ required: true, min: 3, max: 20 }"
@@ -32,7 +32,7 @@
           <VeeField
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
             v-model="password"
             :rules="{ required: true, password: true, min: 8, max: 12 }"

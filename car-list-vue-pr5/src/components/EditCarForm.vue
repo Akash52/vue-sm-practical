@@ -13,8 +13,12 @@
                 htmlFor="todo"
                 class="block mb-2 text-lg font-medium text-gray-900"
               >
-                Update Car
+                Add new Car
               </label>
+              <VeeErrorMessage
+                name="name"
+                class="text-red-500 text-xs italic"
+              />
               <VeeField
                 type="text"
                 name="name"
@@ -24,7 +28,7 @@
                 :rules="{ required: true, min: 3, max: 20 }"
               />
               <VeeErrorMessage
-                name="name"
+                name="top_speed"
                 class="text-red-500 text-xs italic"
               />
               <VeeField
@@ -36,10 +40,9 @@
                 :rules="{ required: true, numeric: true, min: 3, max: 40 }"
               />
               <VeeErrorMessage
-                name="top_speed"
+                name="description"
                 class="text-red-500 text-xs italic"
               />
-
               <VeeField
                 placeholder="DESCRIPTION"
                 name="description"
@@ -49,10 +52,9 @@
                 :rules="{ required: true, min: 20, max: 120 }"
               />
               <VeeErrorMessage
-                name="description"
+                name="image_link"
                 class="text-red-500 text-xs italic"
               />
-
               <VeeField
                 type="url"
                 name="image_link"
@@ -63,7 +65,7 @@
                 :rules="{ required: true, url: true }"
               />
               <VeeErrorMessage
-                name="image_link"
+                name="price"
                 class="text-red-500 text-xs italic"
               />
               <VeeField
@@ -73,10 +75,6 @@
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="price"
                 :rules="{ required: true, numeric: true, min: 0, max: 1000000 }"
-              />
-              <VeeErrorMessage
-                name="price"
-                class="text-red-500 text-xs italic"
               />
             </div>
           </div>
