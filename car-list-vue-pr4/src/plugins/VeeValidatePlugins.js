@@ -1,29 +1,29 @@
-import { defineRule, Form, Field, ErrorMessage } from 'vee-validate'
-import { required } from '@vee-validate/rules'
+import { defineRule, Form, Field, ErrorMessage, configure } from 'vee-validate'
+import { required, email, min, max, url, numeric } from '@vee-validate/rules'
+import { localize } from '@vee-validate/i18n'
 
 export default (app) => {
   defineRule('required', required)
+  defineRule('email', email)
+  defineRule('min', min)
+  defineRule('max', max)
+  defineRule('url', url)
+  defineRule('numeric', numeric)
+
+  configure({
+    generateMessage: localize('en', {
+      messages: {
+        required: '{field} is required',
+        email: '{field} is not a valid email',
+        min: '{field} must be at least 0:{min} characters',
+        max: '{field} must be at most 0:{max} characters',
+        url: '{field} is not a valid url',
+        numeric: '{field} is not a valid number'
+      }
+    })
+  })
 
   app.component('VeeForm', Form)
   app.component('VeeField', Field)
   app.component('VeeErrorMessage', ErrorMessage)
-
-  //   defineRule('phone', {
-  //     getMessage: (field) => `${field} is not a valid phone number`,
-  //     validate: (value) => /^\+?[0-9]{10,15}$/.test(value)
-  //   }),
-  //     defineRule('email', {
-  //       getMessage: (field) => `${field} is not a valid email address`,
-  //       validate: (value) =>
-  //         /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-  //           value
-  //         )
-  //     }),
-  //   defineRule('url', {
-  //     getMessage: (field) => `${field} is not a valid url`,
-  //     validate: (value) =>
-  //       /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/.test(
-  //         value
-  //       )
-  //   })
 }

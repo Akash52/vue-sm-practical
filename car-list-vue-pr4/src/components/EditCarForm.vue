@@ -13,7 +13,7 @@
                 htmlFor="todo"
                 class="block mb-2 text-lg font-medium text-gray-900"
               >
-                Add new Car
+                Update Car
               </label>
               <VeeField
                 type="text"
@@ -21,19 +21,19 @@
                 placeholder="CAR NAME"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="name"
-                rules="required"
+                :rules="{ required: true, min: 3, max: 20 }"
               />
               <VeeErrorMessage
                 name="name"
                 class="text-red-500 text-xs italic"
               />
               <VeeField
-                type="number"
+                type="text"
                 name="top_speed"
                 placeholder="TOP SPEED"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="top_speed"
-                rules="required"
+                :rules="{ required: true, numeric: true, min: 3, max: 20 }"
               />
               <VeeErrorMessage
                 name="top_speed"
@@ -45,10 +45,8 @@
                 name="description"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="description"
-                minlength="20"
-                maxlength="120"
                 type="text"
-                rules="required"
+                :rules="{ required: true, min: 20, max: 120 }"
               />
               <VeeErrorMessage
                 name="description"
@@ -60,20 +58,21 @@
                 name="image_link"
                 placeholder="IMAGE URL"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
+                pattern="/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i"
                 v-model="image_link"
-                rules="required"
+                :rules="{ required: true, url: true }"
               />
               <VeeErrorMessage
                 name="image_link"
                 class="text-red-500 text-xs italic"
               />
               <VeeField
-                type="number"
+                type="text"
                 name="price"
                 placeholder="PRICE"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="price"
-                rules="required"
+                :rules="{ required: true, numeric: true, min: 0, max: 1000000 }"
               />
               <VeeErrorMessage
                 name="price"
@@ -88,7 +87,7 @@
               class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
               type="submit"
             >
-              Update Car
+              UPDATE CAR
             </button>
           </div>
         </div>
