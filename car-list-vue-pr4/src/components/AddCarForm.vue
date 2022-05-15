@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <VeeForm @submit="handleSubmit">
     <div
       class="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none"
     >
@@ -15,42 +15,71 @@
               >
                 Add new Car
               </label>
-              <input
+              <VeeField
                 type="text"
+                name="name"
                 placeholder="CAR NAME"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="name"
-                required
+                rules="required"
               />
-              <input
+              <VeeErrorMessage
+                name="name"
+                class="text-red-500 text-xs italic"
+              />
+              <VeeField
                 type="number"
+                name="top_speed"
                 placeholder="TOP SPEED"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="top_speed"
-                required
+                rules="required"
               />
-              <textarea
+              <VeeErrorMessage
+                name="top_speed"
+                class="text-red-500 text-xs italic"
+              />
+
+              <VeeField
                 placeholder="DESCRIPTION"
+                name="description"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="description"
                 minlength="20"
                 maxlength="120"
                 type="text"
-                required
-              ></textarea>
-              <input
+                rules="required"
+              />
+              <VeeErrorMessage
+                name="description"
+                class="text-red-500 text-xs italic"
+              />
+
+              <VeeField
                 type="url"
+                name="image_link"
                 placeholder="IMAGE URL"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 pattern="/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i"
                 v-model="image_link"
-                required
+                accept="image/*"
+                rules="required"
               />
-              <input
+              <VeeErrorMessage
+                name="image_link"
+                class="text-red-500 text-xs italic"
+              />
+              <VeeField
                 type="number"
+                name="price"
                 placeholder="PRICE"
                 class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
                 v-model="price"
+                rules="required"
+              />
+              <VeeErrorMessage
+                name="price"
+                class="text-red-500 text-xs italic"
               />
             </div>
           </div>
@@ -68,12 +97,13 @@
       </div>
     </div>
     <div class="fixed inset-0 z-40 bg-black opacity-25"></div>
-  </form>
+  </VeeForm>
 </template>
 
 <script>
 export default {
   name: 'AddCarForm',
+
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
@@ -85,6 +115,12 @@ export default {
     }
   },
   methods: {
+    // eslint-disable-next-line space-before-function-paren
+    // required(value) {
+    //   if (value && value.trim()) return true
+    //   return 'This field is required'
+    // },
+
     // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
       const newCar = {
