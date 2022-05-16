@@ -71,13 +71,13 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
   props: {
     id: {
       type: String,
-      required: true,
-    },
+      required: true
+    }
   },
 
   // eslint-disable-next-line space-before-function-paren
@@ -85,32 +85,32 @@ export default {
     return {
       // here we are going to define our cars array
       loading: false,
-      cars: [],
-    };
+      cars: []
+    }
   },
 
   // eslint-disable-next-line space-before-function-paren
   async created() {
-    this.loading = true;
+    this.loading = true
     const { data } = await axios.get(
       'https://vue-fake-server.herokuapp.com/cardata'
-    );
-    this.cars = data;
-    this.loading = false;
+    )
+    this.cars = data
+    this.loading = false
   },
 
   computed: {
     // eslint-disable-next-line space-before-function-paren
     car() {
-      return this.cars.find((car) => car.id === Number(this.id)) || {};
-    },
+      return this.cars.find((car) => car.id === Number(this.id)) || {}
+    }
   },
 
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
-      this.$router.push('/');
-    },
-  },
-};
+      this.$router.push('/')
+    }
+  }
+}
 </script>

@@ -68,16 +68,16 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 export default {
   props: {
-    car: Object,
+    car: Object
   },
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      uri: 'https://vue-fake-server.herokuapp.com/cardata/' + this.car.id,
-    };
+      uri: 'https://vue-fake-server.herokuapp.com/cardata/' + this.car.id
+    }
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
@@ -86,12 +86,12 @@ export default {
         axios
           .delete(this.uri)
           .then(() => {
-            this.$emit('deleteCar', this.car.id);
+            this.$emit('deleteCar', this.car.id)
           })
           .catch((error) => {
-            console.log(error);
-          });
-    },
-  },
-};
+            console.log(error)
+          })
+    }
+  }
+}
 </script>

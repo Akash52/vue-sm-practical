@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 
 export default {
   // eslint-disable-next-line space-before-function-paren
@@ -85,35 +85,35 @@ export default {
     return {
       formData: {
         email: 'ac85@gmail.com',
-        password: 'Akash@123',
-      },
-    };
+        password: 'Akash@123'
+      }
+    }
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
-      this.$router.push('/');
+      this.$router.push('/')
     },
     // eslint-disable-next-line space-before-function-paren
     async onSubmit() {
       await axios
         .get('https://testapi.io/api/dartya/resource/users/52')
         .then((res) => {
-          console.log(res.data);
+          console.log(res.data)
           if (res && res.data) {
             if (
               this.formData.email === res.data.email &&
               this.formData.password === res.data.password
             ) {
-              this.$router.push('/');
+              this.$router.push('/')
             }
           } else {
-            alert('Invalid Credentials');
+            alert('Invalid Credentials')
           }
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 
 <style></style>
