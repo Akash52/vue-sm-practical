@@ -15,14 +15,14 @@
       <div
         class="px-4 relative py-8 transition duration-500 bg-gray-800 hover:opacity-95 sm:rounded-lg sm:px-10"
       >
-        <VeeForm @submit="handleSubmit">
+        <VeeForm @submit="onSubmit">
           <VeeErrorMessage name="email" class="text-red-500 text-xs italic" />
           <VeeField
             type="email"
             name="email"
             placeholder="Email"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="email"
+            v-model="formData.email"
             :rules="{ required: true, email: true }"
           />
           <VeeErrorMessage
@@ -34,7 +34,7 @@
             name="password"
             placeholder="Password"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="password"
+            v-model="formData.password"
             :rules="{ required: true, password: true, min: 8, max: 12 }"
           />
           <button
@@ -43,7 +43,6 @@
           >
             Login
           </button>
-
           <p class="mt-4 text-base text-gray-300 italic">
             <router-link :to="{ name: 'UserRegister' }"
               ><span class="text-orange-300 underline">Click here </span>
@@ -76,11 +75,39 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
+    return {
+      formData: {
+        email: 'ac85@gmail.com',
+        password: 'Akash@123'
+      }
+    }
+  },
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
       this.$router.push('/')
+    },
+    // eslint-disable-next-line space-before-function-paren
+    async onSubmit() {
+      await axios
+        .get('https://testapi.io/api/dartya/resource/users/52')
+        .then((res) => {
+          console.log(res.data)
+          if (res && res.data) {
+            if (
+              this.formData.email === res.data.email &&
+              this.formData.password === res.data.password
+            ) {
+              this.$router.push('/')
+            }
+          } else {
+            alert('Invalid Credentials')
+          }
+        })
     }
   }
 }
