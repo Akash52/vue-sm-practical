@@ -1,15 +1,20 @@
 <template>
   <!-- Header -->
-  <HeaderComp />
+  <transition appear="true" name="bounce">
+    <HeaderComp />
+  </transition>
 
   <div v-if="!loading" class="flex flex-wrap">
     <!-- here we are going to loop through our cars array and display them -->
+
     <div
       v-for="car in cars"
       :key="car.id"
       class="w-full max-w-sm px-4 py-6 mx-auto mb-4 transition duration-500 transform md:w-6/12 xl:4/12 lg:w-4/12 lg:mb-0 hover:scale-110"
     >
-      <CarList :car="car" @deleteCar="handleDelete" />
+      <transition appear="true" name="fade">
+        <CarList :car="car" @deleteCar="handleDelete" />
+      </transition>
     </div>
   </div>
   <div v-else>
@@ -18,10 +23,9 @@
 </template>
 
 <script>
-import CarList from '@/components/CarList.vue'
-import HeaderComp from '@/components/HeaderComp.vue'
-
-import axios from 'axios'
+import CarList from '@/components/CarList.vue';
+import HeaderComp from '@/components/HeaderComp.vue';
+import axios from 'axios';
 
 export default {
   name: 'HomePage',
@@ -30,31 +34,31 @@ export default {
     return {
       // here we are going to define our cars array
       loading: false,
-      cars: []
-    }
+      cars: [],
+    };
   },
   // eslint-disable-next-line space-before-function-paren
   mounted() {
-    this.loading = true
+    this.loading = true;
     axios
       .get('https://vue-fake-server.herokuapp.com/cardata')
       .then((res) => {
-        this.cars = res.data
-        this.loading = false
+        this.cars = res.data;
+        this.loading = false;
       })
       .catch((err) => {
-        alert(err)
-      })
+        alert(err);
+      });
   },
 
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleDelete(id) {
-      return (this.cars = this.cars.filter((car) => car.id !== id))
-    }
+      return (this.cars = this.cars.filter((car) => car.id !== id));
+    },
   },
-  components: { CarList, HeaderComp }
-}
+  components: { CarList, HeaderComp },
+};
 </script>
 
 <style>

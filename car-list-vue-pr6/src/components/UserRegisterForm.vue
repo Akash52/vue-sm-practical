@@ -48,7 +48,7 @@
               required: true,
               password: true,
               min: 8,
-              max: 12
+              max: 12,
             }"
           />
           <VeeErrorMessage
@@ -65,7 +65,7 @@
               required: true,
               password: true,
               min: 8,
-              max: 12
+              max: 12,
             }"
           />
           <VeeErrorMessage name="age" class="text-red-500 text-xs italic" />
@@ -77,7 +77,7 @@
             v-model="formData.age"
             :rules="{
               required: true,
-              min: 2
+              min: 2,
             }"
           />
           <VeeErrorMessage name="dob" class="text-red-500 text-xs italic" />
@@ -89,14 +89,14 @@
             v-model="formData.dob"
             :rules="{
               required: true,
-              min: 2
+              min: 2,
             }"
           />
           <select
             v-model="formData.role"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-1.5 mb-2"
             :rules="{
-              required: true
+              required: true,
             }"
           >
             <option disabled value="">Please select one</option>
@@ -121,12 +121,14 @@
             class="text-white ml-1"
           />
           <label for="two" class="text-white ml-1">Female</label>
-          <button
-            class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
-            type="submit"
-          >
-            Register
-          </button>
+          <transition appear="true" name="bounce">
+            <button
+              class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+              type="submit"
+            >
+              Register
+            </button>
+          </transition>
 
           <p class="mt-4 text-base text-gray-300 italic">
             <router-link :to="{ name: 'UserLogin' }"
@@ -160,7 +162,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -174,14 +176,14 @@ export default {
         age: '',
         dob: '',
         role: ' ',
-        gender: null
-      }
-    }
+        gender: null,
+      },
+    };
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
-      this.$router.push('/')
+      this.$router.push('/');
     },
     // https://testapi.io/api/dartya/resource/users
     // eslint-disable-next-line space-before-function-paren
@@ -189,15 +191,15 @@ export default {
       axios
         .post('https://testapi.io/api/dartya/resource/users', this.formData)
         .then((response) => {
-          console.log(response)
-          this.$router.push('/')
+          console.log(response);
+          this.$router.push('/');
         })
         .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
-}
+          console.log(error);
+        });
+    },
+  },
+};
 </script>
 
 <style></style>

@@ -7,7 +7,6 @@
       >
         {{ car.name }}
       </h1>
-
       <span
         class="absolute top-0 z-50 p-2 m-2 -mt-1 font-extrabold transition translate-y-3 bg-gray-800 rounded-full shadow-2xl cursor-pointer text-neutral-100 -translate-x-7 duration-600 shadow-orange-500 hover:ring-4 ring-pink-300"
         @click="goToHome()"
@@ -72,13 +71,13 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 export default {
   props: {
     id: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
 
   // eslint-disable-next-line space-before-function-paren
@@ -86,32 +85,32 @@ export default {
     return {
       // here we are going to define our cars array
       loading: false,
-      cars: []
-    }
+      cars: [],
+    };
   },
 
   // eslint-disable-next-line space-before-function-paren
   async created() {
-    this.loading = true
+    this.loading = true;
     const { data } = await axios.get(
       'https://vue-fake-server.herokuapp.com/cardata'
-    )
-    this.cars = data
-    this.loading = false
+    );
+    this.cars = data;
+    this.loading = false;
   },
 
   computed: {
     // eslint-disable-next-line space-before-function-paren
     car() {
-      return this.cars.find((car) => car.id === Number(this.id)) || {}
-    }
+      return this.cars.find((car) => car.id === Number(this.id)) || {};
+    },
   },
 
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
-      this.$router.push('/')
-    }
-  }
-}
+      this.$router.push('/');
+    },
+  },
+};
 </script>
