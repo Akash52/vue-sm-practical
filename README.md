@@ -15,3 +15,8 @@
 ### `Practical 5`
 [Live Demo](https://vue-sm-pr5.netlify.app/)
 
+### `Practical 6`
+[Live Demo](https://vue-sm-pr6.netlify.app/)
+
+
+
