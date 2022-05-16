@@ -22,7 +22,7 @@
             name="name"
             placeholder="Name"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="name"
+            v-model="formData.name"
             :rules="{ required: true, min: 3 }"
           />
           <VeeErrorMessage name="email" class="text-red-500 text-xs italic" />
@@ -31,7 +31,7 @@
             name="email"
             placeholder="Email"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="email"
+            v-model="formData.email"
             :rules="{ required: true, email: true }"
           />
           <VeeErrorMessage
@@ -43,7 +43,7 @@
             name="password"
             placeholder="Password"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="password"
+            v-model="formData.password"
             :rules="{
               required: true,
               password: true,
@@ -60,7 +60,7 @@
             name="confirm_password"
             placeholder="Confirm Password"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
-            v-model="cpassword"
+            v-model="formData.cpassword"
             :rules="{
               required: true,
               password: true,
@@ -68,12 +68,59 @@
               max: 12
             }"
           />
-          <select class="form-control" v-model="selectedrole">
-            <option value="">Select Role</option>
-            <option value="admin">Admin</option>
-            <option value="user">User</option>
+          <VeeErrorMessage name="age" class="text-red-500 text-xs italic" />
+          <VeeField
+            type="text"
+            name="age"
+            placeholder="Age"
+            class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
+            v-model="formData.age"
+            :rules="{
+              required: true,
+              min: 2
+            }"
+          />
+          <VeeErrorMessage name="dob" class="text-red-500 text-xs italic" />
+          <VeeField
+            type="date"
+            name="dob"
+            placeholder="Age"
+            class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
+            v-model="formData.dob"
+            :rules="{
+              required: true,
+              min: 2
+            }"
+          />
+          <select
+            v-model="formData.role"
+            class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-1.5 mb-2"
+            :rules="{
+              required: true
+            }"
+          >
+            <option disabled value="">Please select one</option>
+            <option
+              v-for="option in categories"
+              :value="option"
+              :key="option"
+              :selected="option === formData.role"
+              class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-1.5 mb-2"
+            >
+              {{ option }}
+            </option>
           </select>
+          <input type="radio" id="one" value="Male" v-model="formData.gender" />
+          <label for="one" class="text-white ml-1">Male</label>
 
+          <input
+            type="radio"
+            id="two"
+            value="Female"
+            v-model="formData.gender"
+            class="text-white ml-1"
+          />
+          <label for="two" class="text-white ml-1">Female</label>
           <button
             class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
             type="submit"
@@ -118,19 +165,16 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
-      form: {
+      categories: ['admin', 'customer', 'employee'],
+      formData: {
         name: '',
         email: '',
         password: '',
-        ucPassword: '',
+        cPassword: '',
         age: '',
         dob: '',
-        selectedrole: 'null',
-        selectedgender: 'male',
-        genderOptions: [
-          { value: 'male', text: 'Male' },
-          { value: 'female', text: 'Female' }
-        ]
+        role: ' ',
+        gender: null
       }
     }
   },
@@ -146,6 +190,7 @@ export default {
         .post('https://testapi.io/api/dartya/resource/users', this.formData)
         .then((response) => {
           console.log(response)
+          this.$router.push('/')
         })
         .catch((error) => {
           console.log(error)
