@@ -11,3 +11,7 @@
 
 ### `Practical 4`
 [Live Demo](https://vue-sm-pr4.netlify.app/)
+
+### `Practical 5`
+[Live Demo](https://vue-sm-pr5.netlify.app/)
+
