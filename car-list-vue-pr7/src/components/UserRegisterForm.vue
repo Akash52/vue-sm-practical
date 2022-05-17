@@ -162,7 +162,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -176,30 +176,24 @@ export default {
         age: '',
         dob: '',
         role: ' ',
-        gender: null
-      }
-    }
+        gender: null,
+      },
+    };
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
-      this.$router.push('/')
+      this.$router.push('/');
     },
     // https://testapi.io/api/dartya/resource/users
     // eslint-disable-next-line space-before-function-paren
     sendForm() {
-      axios
-        .post('https://testapi.io/api/dartya/resource/users', this.formData)
-        .then((response) => {
-          console.log(response)
-          this.$router.push('/')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
-}
+      this.$store.dispatch('createUser', this.formData).then(() => {
+        this.$router.push('/');
+      });
+    },
+  },
+};
 </script>
 
 <style></style>
