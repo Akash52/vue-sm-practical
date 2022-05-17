@@ -96,7 +96,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'EditCarForm',
   props: ['id'],
@@ -110,7 +109,6 @@ export default {
       price: ''
     }
   },
-
   // eslint-disable-next-line space-before-function-paren
   mounted() {
     fetch(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`)
@@ -123,23 +121,18 @@ export default {
         this.price = data.price
       })
   },
-
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
-      const data = {
+      this.$store.dispatch('updateCar', {
+        id: this.id,
         name: this.name,
         top_speed: this.top_speed,
         description: this.description,
         image_link: this.image_link,
         price: this.price
-      }
-      axios
-        .put(`https://vue-fake-server.herokuapp.com/cardata/${this.id}`, data)
-        .then((res) => {
-          this.$router.push('/')
-        })
-        .catch((err) => console.log(err))
+      })
+      this.$router.push('/')
     }
   }
 }
