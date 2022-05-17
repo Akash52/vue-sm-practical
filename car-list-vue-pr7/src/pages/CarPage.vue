@@ -71,7 +71,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   props: {
     id: {
@@ -81,28 +80,18 @@ export default {
   },
 
   // eslint-disable-next-line space-before-function-paren
-  data() {
-    return {
-      // here we are going to define our cars array
-      loading: false,
-      cars: []
-    }
-  },
-
-  // eslint-disable-next-line space-before-function-paren
   async created() {
-    this.loading = true
-    const { data } = await axios.get(
-      'https://vue-fake-server.herokuapp.com/cardata'
-    )
-    this.cars = data
-    this.loading = false
+    this.$store.dispatch('getCars')
   },
 
   computed: {
     // eslint-disable-next-line space-before-function-paren
     car() {
       return this.cars.find((car) => car.id === Number(this.id)) || {}
+    },
+    // eslint-disable-next-line space-before-function-paren
+    cars() {
+      return this.$store.state.cars
     }
   },
 
