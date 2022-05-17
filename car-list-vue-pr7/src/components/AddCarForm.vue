@@ -96,7 +96,6 @@
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   name: 'AddCarForm',
   // eslint-disable-next-line space-before-function-paren
@@ -119,14 +118,9 @@ export default {
         image_link: this.image_link,
         price: this.price
       }
-      axios
-        .post('https://vue-fake-server.herokuapp.com/cardata', data)
-        .then((response) => {
-          this.$router.push('/')
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      this.$store.dispatch('addCar', data).then(() => {
+        this.$router.push('/')
+      })
     }
   }
 }
