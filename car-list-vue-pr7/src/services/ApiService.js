@@ -35,7 +35,7 @@ export default {
   putCar(car) {
     return apiClient.put(`/cardata/${car.id}`, car);
   },
-  createUser(user) {
+  postUser(user) {
     apiClient2.post('/users', user);
   },
 };

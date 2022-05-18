@@ -185,12 +185,17 @@ export default {
     goToHome() {
       this.$router.push('/');
     },
-    // https://testapi.io/api/dartya/resource/users
     // eslint-disable-next-line space-before-function-paren
     sendForm() {
-      this.$store.dispatch('createUser', this.formData).then(() => {
-        this.$router.push('/');
-      });
+      axios
+        .post('https://testapi.io/api/dartya/resource/users', this.formData)
+        .then((response) => {
+          console.log(response);
+          this.$router.push('/');
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

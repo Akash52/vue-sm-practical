@@ -61,10 +61,10 @@ export default createStore({
           console.log(error);
         });
     },
-    createUser({ commit }, user) {
-      ApiService.createUser(user)
+    addUser({ commit }, car) {
+      ApiService.postUser(car)
         .then(() => {
-          commit('ADD_USER', user);
+          commit('ADD_USER', car);
         })
         .catch((error) => {
           console.log(error);
