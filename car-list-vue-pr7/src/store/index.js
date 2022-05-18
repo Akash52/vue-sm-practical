@@ -29,6 +29,7 @@ export default createStore({
       ApiService.postCar(car)
         .then(() => {
           commit('ADD_CAR', car);
+          commit('SET_CARS', car);
         })
         .catch((error) => {
           console.log(error);

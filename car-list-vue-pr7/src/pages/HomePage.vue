@@ -23,24 +23,24 @@
 </template>
 
 <script>
-import CarList from '@/components/CarList.vue'
-import HeaderComp from '@/components/HeaderComp.vue'
+import CarList from '@/components/CarList.vue';
+import HeaderComp from '@/components/HeaderComp.vue';
 
 export default {
   name: 'HomePage',
   // eslint-disable-next-line space-before-function-paren
   created() {
-    this.$store.dispatch('getCars')
+    this.$store.dispatch('getCars');
   },
   computed: {
     // eslint-disable-next-line space-before-function-paren
     cars() {
-      return this.$store.state.cars
-    }
+      return this.$store.state.cars;
+    },
   },
 
-  components: { CarList, HeaderComp }
-}
+  components: { CarList, HeaderComp },
+};
 </script>
 
 <style>

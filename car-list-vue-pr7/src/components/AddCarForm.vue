@@ -96,6 +96,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'AddCarForm',
   // eslint-disable-next-line space-before-function-paren
@@ -105,23 +107,22 @@ export default {
       top_speed: '',
       description: '',
       image_link: '',
-      price: ''
-    }
+      price: '',
+    };
   },
   methods: {
     // eslint-disable-next-line space-before-function-paren
     handleSubmit() {
-      const data = {
+      this.$store.dispatch('addCar', {
+        id: this.id,
         name: this.name,
         top_speed: this.top_speed,
         description: this.description,
         image_link: this.image_link,
-        price: this.price
-      }
-      this.$store.dispatch('addCar', data).then(() => {
-        this.$router.push('/')
-      })
-    }
-  }
-}
+        price: this.price,
+      });
+      this.$router.push('/');
+    },
+  },
+};
 </script>
