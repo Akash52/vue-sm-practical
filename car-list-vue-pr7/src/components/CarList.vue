@@ -14,8 +14,8 @@
           :to="{
             name: 'CarPage',
             params: {
-              id: car.id,
-            },
+              id: car.id
+            }
           }"
         >
           <button
@@ -52,7 +52,7 @@
             stroke="currentColor"
             stroke-width="2"
             title="Delete"
-            @click="deleteCar"
+            @click="deleteCar(car)"
           >
             <path
               stroke-linecap="round"
@@ -61,23 +61,20 @@
             />
           </svg>
         </div>
-        <!-- </router-link> -->
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   props: {
     car: Object
   },
   // eslint-disable-next-line space-before-function-paren
   methods: {
-    // eslint-disable-next-line space-before-function-paren
-    deleteCar() {
-      confirm('Are you sure you want to delete this car?') &&
-        this.$store.dispatch('deleteCar', this.car)
-    }
+    ...mapActions(['deleteCar'])
   }
 }
 </script>
