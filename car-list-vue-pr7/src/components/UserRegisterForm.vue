@@ -48,7 +48,7 @@
               required: true,
               password: true,
               min: 8,
-              max: 12,
+              max: 12
             }"
           />
           <VeeErrorMessage
@@ -63,9 +63,8 @@
             v-model="formData.cpassword"
             :rules="{
               required: true,
-              password: true,
               min: 8,
-              max: 12,
+              max: 12
             }"
           />
           <VeeErrorMessage name="age" class="text-red-500 text-xs italic" />
@@ -77,7 +76,7 @@
             v-model="formData.age"
             :rules="{
               required: true,
-              min: 2,
+              min: 2
             }"
           />
           <VeeErrorMessage name="dob" class="text-red-500 text-xs italic" />
@@ -89,14 +88,14 @@
             v-model="formData.dob"
             :rules="{
               required: true,
-              min: 2,
+              min: 2
             }"
           />
           <select
             v-model="formData.role"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-1.5 mb-2"
             :rules="{
-              required: true,
+              required: true
             }"
           >
             <option disabled value="">Please select one</option>
@@ -162,7 +161,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import { mapActions } from 'vuex'
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
@@ -176,29 +175,33 @@ export default {
         age: '',
         dob: '',
         role: ' ',
-        gender: null,
-      },
-    };
+        gender: null
+      }
+    }
   },
   methods: {
-    // eslint-disable-next-line space-before-function-paren
-    goToHome() {
-      this.$router.push('/');
-    },
+    ...mapActions(['addUser']),
     // eslint-disable-next-line space-before-function-paren
     sendForm() {
-      axios
-        .post('https://testapi.io/api/dartya/resource/users', this.formData)
-        .then((response) => {
-          console.log(response);
-          this.$router.push('/');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      this.addUser({
+        categories: this.categories,
+        name: this.formData.name,
+        email: this.formData.email,
+        password: this.formData.password,
+        cPassword: this.formData.cPassword,
+        age: this.formData.age,
+        dob: this.formData.dob,
+        role: this.formData.role,
+        gender: this.formData.gender
+      })
+      this.$router.push('/')
     },
-  },
-};
+    // eslint-disable-next-line space-before-function-paren
+    goToHome() {
+      this.$router.push('/')
+    }
+  }
+}
 </script>
 
 <style></style>

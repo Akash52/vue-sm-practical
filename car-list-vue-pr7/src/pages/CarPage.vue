@@ -71,6 +71,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   props: {
     id: {
@@ -79,27 +80,23 @@ export default {
     }
   },
 
-  // eslint-disable-next-line space-before-function-paren
-  async created() {
-    this.$store.dispatch('getCars')
-  },
-
-  computed: {
-    // eslint-disable-next-line space-before-function-paren
-    car() {
-      return this.cars.find((car) => car.id === Number(this.id)) || {}
-    },
-    // eslint-disable-next-line space-before-function-paren
-    cars() {
-      return this.$store.state.cars
-    }
-  },
-
   methods: {
+    ...mapActions(['fetchCars']),
     // eslint-disable-next-line space-before-function-paren
     goToHome() {
       this.$router.push('/')
     }
+  },
+  computed: {
+    ...mapGetters(['cars', 'loading']),
+    // eslint-disable-next-line space-before-function-paren
+    car() {
+      return this.cars.find(car => car.id === Number(this.id)) || {}
+    }
+  },
+  // eslint-disable-next-line space-before-function-paren
+  created() {
+    this.fetchCars()
   }
 }
 </script>

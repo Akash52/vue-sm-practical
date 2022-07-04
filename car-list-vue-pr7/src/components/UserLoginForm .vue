@@ -71,13 +71,14 @@
             />
           </svg>
         </span>
+        {{ user }}
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   // eslint-disable-next-line space-before-function-paren
@@ -85,7 +86,7 @@ export default {
     return {
       formData: {
         email: 'ac85@gmail.com',
-        password: 'Akash@123'
+        password: 'Akash@7285'
       }
     }
   },
@@ -94,24 +95,21 @@ export default {
     goToHome() {
       this.$router.push('/')
     },
+    ...mapActions(['getUsers'])
     // eslint-disable-next-line space-before-function-paren
-    async onSubmit() {
-      await axios
-        .get('https://testapi.io/api/dartya/resource/users/52')
-        .then((res) => {
-          console.log(res.data)
-          if (res && res.data) {
-            if (
-              this.formData.email === res.data.email &&
-              this.formData.password === res.data.password
-            ) {
-              this.$router.push('/')
-            }
-          } else {
-            alert('Invalid Credentials')
-          }
-        })
+  },
+  computed: {
+    ...mapGetters(['users']),
+    // eslint-disable-next-line space-before-function-paren
+    user() {
+      return this.users.find(user => {
+        return user.email === this.formData.email
+      })
     }
+  },
+  // eslint-disable-next-line space-before-function-paren
+  mounted() {
+    this.getUsers()
   }
 }
 </script>
