@@ -2,17 +2,20 @@ import { defineRule, Form, Field, ErrorMessage, configure } from 'vee-validate'
 import { required, email, min, max, url, numeric } from '@vee-validate/rules'
 import { localize } from '@vee-validate/i18n'
 
-export default (app) => {
+export default app => {
   defineRule('required', required)
   defineRule('email', email)
   defineRule('min', min)
   defineRule('max', max)
   defineRule('url', url)
   defineRule('numeric', numeric)
-  defineRule('password', (value) => {
+  defineRule('password', value => {
     const regex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+|~`\-={}[\]:";'<>?,./])(?=.{8,})/
     return regex.test(value)
+  })
+  defineRule('passwordConfirm', value => {
+    return value === Form.fields.password
   })
 
   configure({
@@ -25,7 +28,8 @@ export default (app) => {
         url: '{field} is not a valid url',
         numeric: '{field} is not a valid number',
         password:
-          '{field} must contain at least 8 characters, one uppercase, one lowercase, one number and one special character'
+          '{field} must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
+        passwordConfirm: '{field} must match password'
       }
     })
   })
