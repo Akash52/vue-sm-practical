@@ -1,5 +1,13 @@
 import { defineRule, Form, Field, ErrorMessage, configure } from 'vee-validate'
-import { required, email, min, max, url, numeric } from '@vee-validate/rules'
+import {
+  required,
+  email,
+  min,
+  max,
+  url,
+  numeric,
+  confirmed
+} from '@vee-validate/rules'
 import { localize } from '@vee-validate/i18n'
 
 export default app => {
@@ -14,9 +22,8 @@ export default app => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+|~`\-={}[\]:";'<>?,./])(?=.{8,})/
     return regex.test(value)
   })
-  defineRule('passwordConfirm', value => {
-    return value === Form.fields.password
-  })
+
+  defineRule('confirmed', confirmed)
 
   configure({
     generateMessage: localize('en', {
@@ -29,7 +36,7 @@ export default app => {
         numeric: '{field} is not a valid number',
         password:
           '{field} must contain at least 8 characters, one uppercase, one lowercase, one number and one special character',
-        passwordConfirm: '{field} must match password'
+        confirmed: 'password do not match'
       }
     })
   })

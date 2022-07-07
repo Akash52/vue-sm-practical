@@ -61,11 +61,7 @@
             placeholder="Confirm Password"
             class="bg-gray-50 border focus:outline-none border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 mb-2"
             v-model="formData.cpassword"
-            :rules="{
-              required: true,
-              min: 8,
-              max: 12
-            }"
+            rules="confirmed:@password"
           />
           <VeeErrorMessage name="age" class="text-red-500 text-xs italic" />
           <VeeField
@@ -98,7 +94,6 @@
               required: true
             }"
           >
-            <option disabled value="">Please select one</option>
             <option
               v-for="option in categories"
               :value="option"
