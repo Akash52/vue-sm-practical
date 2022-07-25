@@ -115,14 +115,13 @@
             class="text-white ml-1"
           />
           <label for="two" class="text-white ml-1">Female</label>
-          <transition appear="true" name="bounce">
-            <button
-              class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
-              type="submit"
-            >
-              Register
-            </button>
-          </transition>
+
+          <button
+            class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+            type="submit"
+          >
+            Register
+          </button>
 
           <p class="mt-4 text-base text-gray-300 italic">
             <router-link :to="{ name: 'UserLogin' }"

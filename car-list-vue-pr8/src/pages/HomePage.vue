@@ -1,19 +1,14 @@
 <template>
   <!-- Header -->
-  <transition appear="true" name="fade">
-    <HeaderComp />
-  </transition>
+  <HeaderComp />
   <!-- End Header -->
-
   <div v-if="!loading" class="flex flex-wrap">
     <div
       v-for="car in cars"
       :key="car.id"
       class="w-full max-w-sm px-4 py-6 mx-auto mb-4 transition duration-500 transform md:w-6/12 xl:4/12 lg:w-4/12 lg:mb-0 hover:scale-110"
     >
-      <transition name="fade">
-        <CarList :car="car" />
-      </transition>
+      <CarList :car="car" />
     </div>
   </div>
   <div v-else>
