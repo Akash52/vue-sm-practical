@@ -76,9 +76,8 @@
     </div>
   </div>
 </template>
-
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   // eslint-disable-next-line space-before-function-paren
@@ -95,21 +94,18 @@ export default {
     goToHome() {
       this.$router.push('/')
     },
-    ...mapActions(['getUsers'])
     // eslint-disable-next-line space-before-function-paren
-  },
-  computed: {
-    ...mapGetters(['users']),
-    // eslint-disable-next-line space-before-function-paren
-    user() {
-      return this.users.find(user => {
-        return user.email === this.formData.email
-      })
+    async onSubmit() {
+      try {
+        await this.$store.dispatch('signup', {
+          email: this.formData.email,
+          password: this.formData.password
+        })
+        this.$router.push('/')
+      } catch (error) {
+        console.log(error)
+      }
     }
-  },
-  // eslint-disable-next-line space-before-function-paren
-  mounted() {
-    this.getUsers()
   }
 }
 </script>
