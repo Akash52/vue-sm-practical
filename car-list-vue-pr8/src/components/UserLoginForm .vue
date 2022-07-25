@@ -6,7 +6,7 @@
       <h2
         class="text-2xl font-extrabold text-center text-white lg:text-3xl md:text-xl"
       >
-        Login to your account
+        {{ submitButtonCaption }} to your account
       </h2>
     </div>
     <div
@@ -42,14 +42,15 @@
               class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
               type="submit"
             >
-              Login
+              {{ submitButtonCaption }}
             </button>
           </transition>
           <p class="mt-4 text-base text-gray-300 italic">
-            <router-link :to="{ name: 'UserRegister' }"
-              ><span class="text-orange-300 underline">Click here </span>
-            </router-link>
-            for Register
+            <span class="text-orange-300">
+              <button type="button" mode="flat" @click="switchMode">
+                {{ switchModeCaption }}
+              </button>
+            </span>
           </p>
         </VeeForm>
         <span
@@ -71,21 +72,46 @@
             />
           </svg>
         </span>
-        {{ user }}
+        <span
+          :show="!!error"
+          class="text-red-600 absolute bottom-0 right-0 m-2 p-2 rounded-md bg-slate-900"
+          >{{ error }}</span
+        >
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
-
 export default {
   // eslint-disable-next-line space-before-function-paren
   data() {
     return {
+      error: null,
+      mode: 'login',
+      formIsValid: true,
+      isLoading: false,
       formData: {
-        email: 'ac85@gmail.com',
-        password: 'Akash@7285'
+        email: '',
+        password: ''
+      }
+    }
+  },
+
+  computed: {
+    // eslint-disable-next-line space-before-function-paren
+    submitButtonCaption() {
+      if (this.mode === 'login') {
+        return 'Login'
+      } else {
+        return 'Register'
+      }
+    },
+    // eslint-disable-next-line space-before-function-paren
+    switchModeCaption() {
+      if (this.mode === 'login') {
+        return 'Signup instead'
+      } else {
+        return 'Login instead'
       }
     }
   },
@@ -96,14 +122,31 @@ export default {
     },
     // eslint-disable-next-line space-before-function-paren
     async onSubmit() {
+      this.isLoading = true
+      this.error = null
+      this.formIsValid = true
+      const actionPayload = {
+        email: this.formData.email,
+        password: this.formData.password
+      }
       try {
-        await this.$store.dispatch('signup', {
-          email: this.formData.email,
-          password: this.formData.password
-        })
-        this.$router.push('/')
-      } catch (error) {
-        console.log(error)
+        if (this.mode === 'login') {
+          await this.$store.dispatch('signin', actionPayload)
+          this.$router.push('/abc')
+        } else {
+          await this.$store.dispatch('signup', actionPayload)
+        }
+      } catch (err) {
+        this.error = err.message
+      }
+      this.isLoading = false
+    },
+    // eslint-disable-next-line space-before-function-paren
+    switchMode() {
+      if (this.mode === 'login') {
+        this.mode = 'register'
+      } else {
+        this.mode = 'login'
       }
     }
   }
