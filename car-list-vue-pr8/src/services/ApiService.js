@@ -23,22 +23,22 @@ export default {
   getCars() {
     return apiClient.get('/cardata')
   },
-  getCar (id) {
+  getCar(id) {
     return apiClient.get(`/cardata/${id}`)
   },
-  postCar (car) {
+  postCar(car) {
     return apiClient.post('/cardata', car)
   },
-  deleteCar (car) {
+  deleteCar(car) {
     return apiClient.delete(`/cardata/${car.id}`)
   },
-  putCar (car) {
+  putCar(car) {
     return apiClient.put(`/cardata/${car.id}`, car)
   },
-  postUser (user) {
+  postUser(user) {
     apiClient2.post('/users', user)
   },
-  getUsers () {
+  getUsers() {
     return apiClient2.get('/users')
   }
 }
