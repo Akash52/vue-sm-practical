@@ -84,43 +84,4 @@ router.beforeEach(function (to, _, next) {
   }
 })
 
-// router.beforeEach(function (to, _, next) {
-//   if (to.name === 'UserLogin' || to.name === 'UserRegister') {
-//     if (isLoggedIn()) {
-//       next('/')
-//     } else {
-//       next()
-//     }
-//   }
-//   if (to.name === 'CarPage') {
-//     if (isLoggedIn()) {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-//   if (to.name === 'EditCar') {
-//     if (isLoggedIn()) {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-//   if (to.name === 'AddCar') {
-//     if (isLoggedIn()) {
-//       next()
-//     } else {
-//       next('/login')
-//     }
-//   }
-//   next()
-//   if (to.name === 'HomePage') {
-//     if (isLoggedIn()) {
-//       next('/')
-//     } else {
-//       next('/login')
-//     }
-//   }
-// })
-
 export default router

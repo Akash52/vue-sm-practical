@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-col justify-center items-center sm:mx-4 sm:px-6 lg:px-8"
+    class="flex flex-col justify-center items-center sm:mx-4 sm:px-6 lg:px-8 login-page"
   >
     <div class="w-full max-w-md mx-auto">
       <h2
@@ -154,4 +154,18 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.login-page {
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+</style>
