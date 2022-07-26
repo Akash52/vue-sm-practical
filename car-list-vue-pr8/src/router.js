@@ -6,44 +6,66 @@ import EditCarForm from '@/components/EditCarForm.vue'
 import AddCarForm from '@/components/AddCarForm.vue'
 import UserLoginForm from './components/UserLoginForm '
 import UserRegisterForm from './components/UserRegisterForm'
+import store from './store'
 
 const routes = [
   {
     path: '/car/:id',
     name: 'CarPage',
     component: CarPage,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/',
     name: 'HomePage',
-    component: HomePage
+    component: HomePage,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/editCar/:id',
     name: 'EditCar',
     component: EditCarForm,
-    props: true
+    props: true,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/addCar',
     name: 'AddCar',
-    component: AddCarForm
+    component: AddCarForm,
+    meta: {
+      requiresAuth: true
+    }
   },
   {
     path: '/login',
     name: 'UserLogin',
-    component: UserLoginForm
+    component: UserLoginForm,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/register',
     name: 'UserRegister',
-    component: UserRegisterForm
+    component: UserRegisterForm,
+    meta: {
+      requiresGuest: true
+    }
   },
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: NotFoundVue
+    component: NotFoundVue,
+    meta: {
+      requiresAuth: true
+    }
   }
 ]
 
@@ -51,5 +73,54 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach(function (to, _, next) {
+  if (to.meta.requiresAuth && !store.getters.isAuthenticated) {
+    next('/login')
+  } else if (to.meta.requiresUnauth && store.getters.isAuthenticated) {
+    next('/')
+  } else {
+    next()
+  }
+})
+
+// router.beforeEach(function (to, _, next) {
+//   if (to.name === 'UserLogin' || to.name === 'UserRegister') {
+//     if (isLoggedIn()) {
+//       next('/')
+//     } else {
+//       next()
+//     }
+//   }
+//   if (to.name === 'CarPage') {
+//     if (isLoggedIn()) {
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   }
+//   if (to.name === 'EditCar') {
+//     if (isLoggedIn()) {
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   }
+//   if (to.name === 'AddCar') {
+//     if (isLoggedIn()) {
+//       next()
+//     } else {
+//       next('/login')
+//     }
+//   }
+//   next()
+//   if (to.name === 'HomePage') {
+//     if (isLoggedIn()) {
+//       next('/')
+//     } else {
+//       next('/login')
+//     }
+//   }
+// })
 
 export default router

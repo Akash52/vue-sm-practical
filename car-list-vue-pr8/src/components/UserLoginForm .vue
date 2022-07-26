@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex flex-col px-2 py-4 justify-center items-center sm:mx-4 sm:px-6 lg:px-8"
+    class="flex flex-col justify-center items-center sm:mx-4 sm:px-6 lg:px-8"
   >
     <div class="w-full max-w-md mx-auto">
       <h2
-        class="text-xl font-extrabold text-center bg-gray-800 px-2 py-4 mt-4 shadow-lg rounded-t-lg shadow-green-400 text-white lg:text-3xl md:text-xl"
+        class="text-2xl font-extrabold text-center text-white lg:text-3xl md:text-xl"
       >
         {{ submitButtonCaption }} to your account
       </h2>
@@ -13,7 +13,7 @@
       class="mt-4 shadow-md sm:mx-auto sm:w-full hover:shadow-sm sm:max-w-md"
     >
       <div
-        class="px-4 relative py-8 shadow-lg -mt-4 shadow-orange-400 transition duration-500 bg-gray-800 hover:opacity-95 sm:px-10"
+        class="px-4 relative py-8 transition duration-500 bg-gray-800 hover:opacity-95 sm:rounded-lg sm:px-10"
       >
         <VeeForm @submit="onSubmit">
           <VeeErrorMessage name="email" class="text-red-500 text-xs italic" />
@@ -37,17 +37,14 @@
             v-model="formData.password"
             :rules="{ required: true, password: true, min: 8, max: 12 }"
           />
-
-          <button
-            class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
-            type="submit"
-            :style="{
-              backgroundColor: loading ? '#f3f3f3' : '#3498db'
-            }"
-          >
-            {{ submitButtonCaption }}
-          </button>
-
+          <transition appear="true" name="fade">
+            <button
+              class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+              type="submit"
+            >
+              {{ submitButtonCaption }}
+            </button>
+          </transition>
           <p class="mt-4 text-base text-gray-300 italic">
             <span class="text-orange-300">
               <button type="button" mode="flat" @click="switchMode">
@@ -76,16 +73,10 @@
           </svg>
         </span>
         <span
+          :show="!!error"
           class="text-red-600 absolute bottom-0 right-0 m-2 p-2 rounded-md bg-slate-900"
-          v-if="error"
           >{{ error }}</span
         >
-        <span
-          class="text-white text absolute animate-bounce bottom-0 right-0 m-2 p-2 rounded-md"
-          v-if="isLoading"
-        >
-          <span class="spinner">Loading</span>
-        </span>
       </div>
     </div>
   </div>
@@ -132,6 +123,7 @@ export default {
     // eslint-disable-next-line space-before-function-paren
     async onSubmit() {
       this.isLoading = true
+      this.error = null
       this.formIsValid = true
       const actionPayload = {
         email: this.formData.email,
@@ -140,11 +132,11 @@ export default {
       try {
         if (this.mode === 'login') {
           await this.$store.dispatch('signin', actionPayload)
-          this.$router.push('/')
         } else {
           await this.$store.dispatch('signup', actionPayload)
-          this.$router.push('/')
         }
+        const redirectUrl = '/' + (this.$route.query.redirect || '')
+        this.$router.replace(redirectUrl)
       } catch (err) {
         this.error = 'Something went wrong'
       }
@@ -162,15 +154,4 @@ export default {
 }
 </script>
 
-<style>
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-.spinner {
-  animation: spin 1s linear infinite;
-}
-</style>
+<style></style>

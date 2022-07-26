@@ -52,5 +52,13 @@ export default {
       userId: data.localId,
       tokenExpiration: data.expiresIn
     })
+  },
+  // eslint-disable-next-line space-before-function-paren
+  logout(context) {
+    context.commit('setUser', {
+      token: null,
+      userId: null,
+      tokenExpiration: null
+    })
   }
 }

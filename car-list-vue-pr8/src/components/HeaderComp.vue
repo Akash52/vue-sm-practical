@@ -29,6 +29,7 @@
         <div class="flex justify-between">
           <ul
             class="flex items-center justify-center p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
+            v-if="isLoggedIn"
           >
             <li title="Add new car">
               <router-link :to="{ name: 'AddCar' }">
@@ -52,9 +53,8 @@
           </ul>
           <ul
             class="flex items-center justify-center ml-2 p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
-            title="Login"
           >
-            <li>
+            <li v-if="!isLoggedIn" title="Login">
               <router-link :to="{ name: 'UserLogin' }">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -72,10 +72,27 @@
                 </svg>
               </router-link>
             </li>
+            <li v-if="isLoggedIn" @click="logout" title="Logout">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+            </li>
           </ul>
           <ul
             class="flex items-center justify-center ml-2 p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
             title="Register"
+            v-if="isShow"
           >
             <li>
               <router-link :to="{ name: 'UserRegister' }">
@@ -102,5 +119,25 @@
   </div>
 </template>
 <script>
-export default {}
+export default {
+  // eslint-disable-next-line space-before-function-paren
+  data() {
+    return {
+      isShow: false
+    }
+  },
+  computed: {
+    // eslint-disable-next-line space-before-function-paren
+    isLoggedIn() {
+      return this.$store.getters.isAuthenticated
+    }
+  },
+  methods: {
+    // eslint-disable-next-line space-before-function-paren
+    logout() {
+      this.$store.dispatch('logout')
+      this.$router.push('/login')
+    }
+  }
+}
 </script>
