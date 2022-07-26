@@ -6,6 +6,7 @@ export default {
   // eslint-disable-next-line space-before-function-paren
   state() {
     return {
+      email: null,
       userId: null,
       token: null,
       didAutoLogout: false

@@ -26,6 +26,11 @@
             </router-link>
           </li>
         </ul>
+
+        <span class="mt-4 text-lg font-semibold text-gray-200 dark:text-white">
+          {{ email }}
+        </span>
+
         <div class="flex justify-between">
           <ul
             class="flex items-center justify-center p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
@@ -130,6 +135,10 @@ export default {
     // eslint-disable-next-line space-before-function-paren
     isLoggedIn() {
       return this.$store.getters.isAuthenticated
+    },
+    // eslint-disable-next-line space-before-function-paren
+    email() {
+      return localStorage.getItem('email')
     }
   },
   methods: {

@@ -2,9 +2,12 @@
   <div class="containerClass">
     <router-view />
   </div>
+  {{ uesrEmail }}
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'App',
   // eslint-disable-next-line space-before-function-paren
@@ -15,13 +18,14 @@ export default {
     // eslint-disable-next-line space-before-function-paren
     didAutoLogout() {
       return this.$store.getters.didAutoLogout
-    }
+    },
+    ...mapGetters(['userEmail'])
   },
   watch: {
     // eslint-disable-next-line space-before-function-paren
     didAutoLogout(curValue, oldValue) {
       if (curValue && curValue !== oldValue) {
-        this.$router.replace('/')
+        this.$router.replace('/login')
       }
     }
   }
