@@ -21,5 +21,10 @@
 ### `Practical 7`
 [Live Demo](https://vue-sm-pr7.netlify.app/)
 
+### `Practical 8`
+[Live Demo](https://vue-sm-pr8.netlify.app/login)
+
+
+
 
 
