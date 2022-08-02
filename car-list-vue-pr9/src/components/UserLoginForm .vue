@@ -79,6 +79,13 @@
         >
       </div>
     </div>
+    <h1
+      v-for="i in airports"
+      :key="i"
+      class="text-2xl font-extrabold text-center text-white lg:text-3xl md:text-xl"
+    >
+      {{ i }}
+    </h1>
   </div>
 </template>
 <script>
@@ -112,6 +119,27 @@ export default {
         return 'Signup instead'
       } else {
         return 'Login instead'
+      }
+    },
+    // eslint-disable-next-line space-before-function-paren
+    airports() {
+      if (process.env.NODE_ENV === 'development') {
+        return [
+          {
+            id: 1,
+            name: 'SFO'
+          },
+          {
+            id: 2,
+            name: 'LAX'
+          },
+          {
+            id: 3,
+            name: 'JFK'
+          }
+        ]
+      } else {
+        return []
       }
     }
   },
