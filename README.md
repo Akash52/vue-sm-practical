@@ -24,6 +24,11 @@
 ### `Practical 8`
 [Live Demo](https://vue-sm-pr8.netlify.app/login)
 
+### `Practical 9`
+[Live Demo](https://vue-sm-pr8.netlify.app/login)
+
+https://vue-sm-pr9.netlify.app/login
+
 
 
 
