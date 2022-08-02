@@ -1,18 +1,11 @@
 import { createWebHistory, createRouter } from 'vue-router'
-import CarPage from './pages/CarPage.vue'
-import HomePage from './pages/HomePage.vue'
-import NotFoundVue from './pages/NotFound.vue'
-import EditCarForm from '@/components/EditCarForm.vue'
-import AddCarForm from '@/components/AddCarForm.vue'
-import UserLoginForm from './components/UserLoginForm '
-import UserRegisterForm from './components/UserRegisterForm'
 import store from './store'
 
 const routes = [
   {
     path: '/car/:id',
     name: 'CarPage',
-    component: CarPage,
+    component: import('./pages/CarPage.vue'),
     props: true,
     meta: {
       requiresAuth: true
@@ -21,7 +14,7 @@ const routes = [
   {
     path: '/',
     name: 'HomePage',
-    component: HomePage,
+    component: import('./pages/HomePage.vue'),
     meta: {
       requiresAuth: true
     }
@@ -29,7 +22,7 @@ const routes = [
   {
     path: '/editCar/:id',
     name: 'EditCar',
-    component: EditCarForm,
+    component: import('./components/EditCarForm.vue'),
     props: true,
     meta: {
       requiresAuth: true
@@ -38,7 +31,7 @@ const routes = [
   {
     path: '/addCar',
     name: 'AddCar',
-    component: AddCarForm,
+    component: import('./components/AddCarForm.vue'),
     meta: {
       requiresAuth: true
     }
@@ -46,7 +39,7 @@ const routes = [
   {
     path: '/login',
     name: 'UserLogin',
-    component: UserLoginForm,
+    component: import('./components/UserLoginForm .vue'),
     meta: {
       requiresGuest: true
     }
@@ -54,7 +47,7 @@ const routes = [
   {
     path: '/register',
     name: 'UserRegister',
-    component: UserRegisterForm,
+    component: import('./components/UserRegisterForm.vue'),
     meta: {
       requiresGuest: true
     }
@@ -62,7 +55,7 @@ const routes = [
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
-    component: NotFoundVue,
+    component: import('./pages/NotFound.vue'),
     meta: {
       requiresAuth: true
     }
