@@ -58,14 +58,14 @@
                 v-model="formData.password"
               />
             </ValidationProvider>
-            <transition appear="true" name="fade">
-              <button
-                class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
-                type="submit"
-              >
-                {{ submitButtonCaption }}
-              </button>
-            </transition>
+
+            <button
+              class="w-full px-6 py-3 text-sm font-bold text-white uppercase transition-all duration-150 ease-linear rounded shadow outline-none bg-emerald-500 active:bg-emerald-600 hover:shadow-lg focus:outline-none"
+              type="submit"
+            >
+              {{ submitButtonCaption }}
+            </button>
+
             <p class="mt-4 text-base text-gray-300 italic">
               <span class="text-orange-300">
                 <button type="button" mode="flat" @click="switchMode">
