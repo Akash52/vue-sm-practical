@@ -60,7 +60,7 @@
             class="flex items-center justify-center ml-2 p-4 text-center shadow-md bg-slate-200 hover:bg-slate-50 rounded-xl"
           >
             <li v-if="!isLoggedIn" title="Login">
-              <router-link :to="{ name: 'UserLogin' }">
+              <nuxt-link :to="{ name: 'userAuth' }">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   class="h-6 w-6"
@@ -75,7 +75,7 @@
                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                   />
                 </svg>
-              </router-link>
+              </nuxt-link>
             </li>
             <li v-if="isLoggedIn" @click="logout" title="Logout">
               <svg

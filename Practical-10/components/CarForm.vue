@@ -47,7 +47,7 @@
                 </label>
                 <ValidationProvider
                   name="name"
-                  rules="required|alpha"
+                  rules="required"
                   v-slot="{ errors }"
                 >
                   <span
