@@ -186,7 +186,7 @@ export default {
   },
   created() {
     if (this.carId) {
-      fetch(`https://vue-fake-server.herokuapp.com/cardata/${this.carId}`)
+      fetch(`https://mock-json-server-sm.herokuapp.com/cardata/${this.carId}`)
         .then((res) => res.json())
         .then((data) => {
           this.name = data.name;

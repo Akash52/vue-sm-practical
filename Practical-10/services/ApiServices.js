@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://vue-fake-server.herokuapp.com/",
+  baseURL: "https://mock-json-server-sm.herokuapp.com/",
   withCredentials: false,
   headers: {
     Accept: "application/json",

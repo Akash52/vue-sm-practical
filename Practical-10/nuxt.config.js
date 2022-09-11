@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "todo",
+    title: "nuxt-car-app",
     htmlAttrs: {
       lang: "en",
     },
