@@ -111,6 +111,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
+  middleware: "notAuth",
   data() {
     return {
       error: null,

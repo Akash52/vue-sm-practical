@@ -36,6 +36,7 @@ export default {
       carId: null,
     };
   },
+  middleware: ["auth"],
   methods: {
     ...mapActions(["getCars"]),
     deleteTask(id) {
