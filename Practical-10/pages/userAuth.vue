@@ -111,7 +111,7 @@ export default {
     ValidationProvider,
     ValidationObserver,
   },
-  middleware: "notAuth",
+  middleware: ["notAuth"],
   data() {
     return {
       error: null,
@@ -145,6 +145,7 @@ export default {
     goToHome() {
       this.$router.push("/");
     },
+
     async handleSubmit() {
       this.isLoading = true;
       this.error = null;
@@ -159,8 +160,7 @@ export default {
         } else {
           await this.$store.dispatch("signup", actionPayload);
         }
-        const redirectUrl = "/" + (this.$route.query.redirect || "");
-        this.$router.replace(redirectUrl);
+        $nuxt.$router.push("/HomePage");
       } catch (err) {
         this.error = "Something went wrong";
       }

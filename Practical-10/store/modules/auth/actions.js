@@ -1,21 +1,18 @@
 let timer;
 
 export default {
-  // eslint-disable-next-line space-before-function-paren
   async signin(context, payload) {
     return context.dispatch("auth", {
       ...payload,
       mode: "login",
     });
   },
-  // eslint-disable-next-line space-before-function-paren
   async signup(context, payload) {
     return context.dispatch("auth", {
       ...payload,
       mode: "signup",
     });
   },
-  // eslint-disable-next-line space-before-function-paren
   async auth(context, payload) {
     const mode = payload.mode;
     let url =
