@@ -1,10 +1,19 @@
 <template>
-  <div></div>
+  <home-page />
 </template>
 
 <script>
+import HomePage from "./HomePage.vue";
 export default {
-  middleware: ["auth"],
+  components: { HomePage },
+
+  created() {
+    if (localStorage.getItem("token")) {
+      this.$router.push({ name: "index" });
+    } else {
+      this.$router.push({ name: "userAuth" });
+    }
+  },
 };
 </script>
 

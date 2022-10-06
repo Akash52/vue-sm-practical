@@ -143,7 +143,11 @@ export default {
   },
   methods: {
     goToHome() {
-      this.$router.push("/");
+      if (localStorage.getItem("token")) {
+        this.$router.push({ name: "index" });
+      } else {
+        this.$router.push({ name: "userAuth" });
+      }
     },
 
     async handleSubmit() {
@@ -160,7 +164,7 @@ export default {
         } else {
           await this.$store.dispatch("signup", actionPayload);
         }
-        $nuxt.$router.push("/HomePage");
+        this.$router.push({ name: "index" });
       } catch (err) {
         this.error = "Something went wrong";
       }
